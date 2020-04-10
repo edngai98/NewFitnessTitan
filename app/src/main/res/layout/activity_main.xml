@@ -22,7 +22,7 @@
     </com.anychart.AnyChartView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/quote"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="53dp"
@@ -30,7 +30,7 @@
         android:layout_marginEnd="81dp"
         android:layout_marginBottom="68dp"
         android:text="Inspirational Quote Here"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/quote_button"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/searchView" />
@@ -48,14 +48,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/quote_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="127dp"
         android:layout_marginBottom="127dp"
         android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/any_chart_view"
-        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/quote"
         app:layout_constraintTop_toTopOf="@+id/searchView" />
 
     <ImageView
@@ -65,7 +65,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="61dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/quote"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher" />
 

@@ -3,6 +3,9 @@ package com.example.newfitnesstitan;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -14,17 +17,33 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
+import com.google.firebase.database.FirebaseDatabase;
 //import com.anychart.sample.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+
+    private static final String KEY_TITLE = "title";
+    private static final String KEY_DESCRIPTION = "description";
+
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         AnyChartView anyChartView = findViewById(R.id.any_chart_view);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar));
@@ -53,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 .format("${%Value}{groupsSeparator: }");
 
         cartesian.animation(true);
-        cartesian.title("Top 10 Cosmetic Products by Revenue");
+        cartesian.title("My Progress");
 
         cartesian.yScale().minimum(0d);
 
@@ -66,5 +85,32 @@ public class MainActivity extends AppCompatActivity {
         cartesian.yAxis(0).title("Revenue");
 
         anyChartView.setChart(cartesian);
+
+        final TextView quotes = findViewById(R.id.quote);
+        Button quote_button = findViewById(R.id.quote_button);
+        quote_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://favqs.com").addConverterFactory(GsonConverterFactory.create()).build();
+                QuotesInterface service = retrofit.create(QuotesInterface.class);
+                Call<Quotes> quotesCall = service.getQuotes();
+                quotesCall.enqueue(new Callback<Quotes>() {
+                    @Override
+                    public void onResponse(Call<Quotes> call, Response<Quotes> response) {
+                        if (response.isSuccessful()) {
+                            quotes.setText(String.valueOf(response.body().getQuote()));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Quotes> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
+
+
     }
 }
