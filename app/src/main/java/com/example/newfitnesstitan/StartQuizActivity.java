@@ -57,8 +57,6 @@ public class StartQuizActivity extends AppCompatActivity {
         quizTitle.setText(inQuizName);
 
         loadQuestion1();
-        //Query query = quizListRef.orderBy("result", Query.Direction.DESCENDING);
-
 
     }
 
