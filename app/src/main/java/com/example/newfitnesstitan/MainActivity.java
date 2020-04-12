@@ -1,7 +1,5 @@
 package com.example.newfitnesstitan;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -21,38 +18,22 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 //import com.anychart.sample.R;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    //need to create reference for each quiz that is done
     private CollectionReference quizListRef = db.collection("users/admin/quiz results");
 
     private TextView textViewData;
@@ -66,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
         textViewData = findViewById(R.id.testText);
         testViewData = findViewById(R.id.test2);
 
-
         Button quizzes_button = findViewById(R.id.quote_button);
         quizzes_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 goToQuizzes();
             }
         });
@@ -93,12 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 List<DataEntry> data = new ArrayList<>();
 
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    Quizzes quizzes = documentSnapshot.toObject(Quizzes.class);
+                    MyQuizResults myQuizResults = documentSnapshot.toObject(MyQuizResults.class);
                     //quizzes.setDocumentID(documentSnapshot.getId());
 
                     //String doc_ID = quizzes.getDocumentID();
-                    String quiz_name = quizzes.getName();
-                    int quiz_result = quizzes.getResult();
+                    String quiz_name = myQuizResults.getName();
+                    int quiz_result = myQuizResults.getResult();
 
                     //List<DataEntry> data = new ArrayList<>();
                     data.add(new ValueDataEntry(quiz_name, quiz_result));
@@ -137,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToQuizzes() {
-        Intent intent = new Intent(this, QuizzesActivity.class);
+        Intent intent = new Intent(this, QuizListActivity.class);
         startActivity(intent);
     }
 }

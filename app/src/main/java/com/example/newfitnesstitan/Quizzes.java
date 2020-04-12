@@ -1,27 +1,17 @@
 package com.example.newfitnesstitan;
 
-import com.google.firebase.database.Exclude;
-
 public class Quizzes {
 
-    private String documentID;
     private String name;
-    private int result;
+    private String description;
 
-    public Quizzes(){}
+    public Quizzes () {
 
-    @Exclude
-    public String getDocumentID() {
-        return documentID;
     }
 
-    public void setDocumentID(String documentID) {
-        this.documentID = documentID;
-    }
-
-    public Quizzes(String name, int result) {
+    public Quizzes(String name, String description) {
         this.name = name;
-        this.result = result;
+        this.description = description;
     }
 
     public String getName() {
@@ -32,11 +22,11 @@ public class Quizzes {
         this.name = name;
     }
 
-    public int getResult() {
-        return result;
+    public String getDescription() {
+        return description;
     }
 
-    public void setResult(int result) {
-        this.result = result;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

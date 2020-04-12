@@ -12,13 +12,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuizDescriptionActivity"></activity>
+        <activity android:name=".StartQuizActivity"></activity>
         <activity
-            android:name=".QuizzesActivity"
+            android:name=".QuizListActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".QuizDescriptionActivity"
+            android:parentActivityName=".QuizListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".QuizListActivity" />
+        </activity>
+        <activity
+            android:name=".QuizResult"
+            android:parentActivityName=".QuizListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".QuizListActivity" />
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

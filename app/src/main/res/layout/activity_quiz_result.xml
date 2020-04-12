@@ -6,26 +6,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".QuizzesActivity">
+    tools:context=".QuizResult">
 
-    <EditText
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quiz Result"
+        android:textSize="40dp"/>
+
+    <TextView
         android:id="@+id/quizname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Quiz Name" />
+        android:hint="Quiz Name"
+        android:textSize="28dp"/>
 
-    <EditText
-        android:id="@+id/testText"
+    <TextView
+        android:id="@+id/tvCorrect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Result"></EditText>
+        android:hint="Result"
+        android:textSize="32dp"/>
+
+    <TextView
+        android:id="@+id/tvWrong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Result"
+        android:textSize="32dp"/>
+
 
     <Button
         android:id="@+id/SetQuizResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Quiz Result"
+        android:text="Finish and Save Result"
         tools:layout_editor_absoluteX="157dp"
         tools:layout_editor_absoluteY="216dp" />
 
