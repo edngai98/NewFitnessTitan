@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 goToQuizzes();
             }
         });
+        Intent test = new Intent(this, LoginActivity.class);
+
 
     }
 

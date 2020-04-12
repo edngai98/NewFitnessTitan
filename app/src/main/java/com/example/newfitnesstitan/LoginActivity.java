@@ -27,7 +27,9 @@ public class LoginActivity extends AppCompatActivity {
         Signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate(Name.getText().toString(),Password.getText().toString());
+                goToDashBoard();
+
+                //validate(Name.getText().toString(),Password.getText().toString());
             }
         });
     }
@@ -40,5 +42,10 @@ public class LoginActivity extends AppCompatActivity {
             //login failure, let user try again
             System.out.println("TRY AGAIN");
         }
+    }
+
+    public void goToDashBoard() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
