@@ -30,9 +30,10 @@ public class StartQuizActivity extends AppCompatActivity {
     Button b1, b2, b3, b4;
     TextView question, quizTitle;
 
-    int total = 0;
+    int total = 1;
     int correct = 0;
     int wrong = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +57,29 @@ public class StartQuizActivity extends AppCompatActivity {
         String inQuizName = intent.getStringExtra("quiz_name_key");
         quizTitle.setText(inQuizName);
 
-        loadQuestion1();
+
+        loadQuestion(total);
+        total = 1;
+
 
     }
 
-    public void loadQuestion1() {
+
+
+    public void loadQuestion(int q) {
+        if (total > 5) {
+            goToQuizResults();
+            return;
+        }
+
 
         Intent intent = getIntent();
         String path = intent.getStringExtra(QuizDescriptionActivity.KEY_START_QUIZ_PATH);
         System.out.println(path);
         CollectionReference questionOn = db.collection(path);
-        questionOn.whereEqualTo("tag","1").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        String qNo = String.valueOf(q);
+
+        questionOn.whereEqualTo("tag",qNo).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
@@ -105,7 +118,9 @@ public class StartQuizActivity extends AppCompatActivity {
                                             //change colours here
                                             b1.setBackgroundColor(Color.parseColor("#03A9f4"));
 
-                                            loadQuestion2();
+                                            total++;
+                                            loadQuestion(total);
+
                                         }
                                     }, 1500);
                                 }
@@ -133,7 +148,9 @@ public class StartQuizActivity extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            loadQuestion2();
+
+                                            total++;
+                                            loadQuestion(total);
 
                                         }
                                     },1500);
@@ -158,7 +175,8 @@ public class StartQuizActivity extends AppCompatActivity {
                                             //change colours here
                                             b2.setBackgroundColor(Color.parseColor("#03A9f4"));
 
-                                            loadQuestion2();
+                                            total++;
+                                            loadQuestion(total);
                                         }
                                     }, 1500);
                                 }
@@ -182,7 +200,9 @@ public class StartQuizActivity extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            loadQuestion2();
+
+                                            total++;
+                                            loadQuestion(total);
 
                                         }
                                     }, 1500);
@@ -207,7 +227,8 @@ public class StartQuizActivity extends AppCompatActivity {
                                             //change colours here
                                             b3.setBackgroundColor(Color.parseColor("#03A9f4"));
 
-                                            loadQuestion2();
+                                            total++;
+                                            loadQuestion(total);
                                         }
                                     }, 1500);
                                 }
@@ -235,7 +256,9 @@ public class StartQuizActivity extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            loadQuestion2();
+
+                                            total++;
+                                            loadQuestion(total);
 
                                         }
                                     },1500);
@@ -260,7 +283,8 @@ public class StartQuizActivity extends AppCompatActivity {
                                             //change colours here
                                             b4.setBackgroundColor(Color.parseColor("#03A9f4"));
 
-                                            loadQuestion2();
+                                            total++;
+                                            loadQuestion(total);
                                         }
                                     }, 1500);
                                 }
@@ -288,7 +312,9 @@ public class StartQuizActivity extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            loadQuestion2();
+
+                                            total++;
+                                            loadQuestion(total);
                                         }
                                     },1500);
                                 }
@@ -298,968 +324,6 @@ public class StartQuizActivity extends AppCompatActivity {
                     }
                 }
             });
-
-    }
-
-    public void loadQuestion2() {
-
-        Intent intent = getIntent();
-        String path = intent.getStringExtra(QuizDescriptionActivity.KEY_START_QUIZ_PATH);
-        CollectionReference questionOn = db.collection(path);
-
-        questionOn.whereEqualTo("tag","2").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    return;
-                }
-
-                for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
-                    final QuizQuestions quizQuestions = documentSnapshot.toObject(QuizQuestions.class);
-
-                    question.setText(quizQuestions.getQuestion());
-                    b1.setText(quizQuestions.getOption1());
-                    b2.setText(quizQuestions.getOption2());
-                    b3.setText(quizQuestions.getOption3());
-                    b4.setText(quizQuestions.getOption4());
-
-                    b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b4.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                    b1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            //answer if correct
-                            if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b1.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion3();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b1.setBackgroundColor(Color.RED);
-
-                                if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-                                        loadQuestion3();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                    b2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if (b2.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b2.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion3();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b2.setBackgroundColor(Color.RED);
-
-                                if (b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                } else if (b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                } else if (b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-                                        loadQuestion3();
-                                    }
-                                }, 1500);
-                            }
-                        }
-                    });
-
-                    b3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b3.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion3();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b3.setBackgroundColor(Color.RED);
-
-                                if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion3();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                    b4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b4.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b4.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion3();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b4.setBackgroundColor(Color.RED);
-
-                                if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion3();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                }
-            }
-        });
-
-        }
-
-    public void loadQuestion3() {
-
-        Intent intent = getIntent();
-        String path = intent.getStringExtra(QuizDescriptionActivity.KEY_START_QUIZ_PATH);
-        CollectionReference questionOn = db.collection(path);
-
-        questionOn.whereEqualTo("tag","3").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    return;
-                }
-
-                for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
-                    final QuizQuestions quizQuestions = documentSnapshot.toObject(QuizQuestions.class);
-
-                    question.setText(quizQuestions.getQuestion());
-                    b1.setText(quizQuestions.getOption1());
-                    b2.setText(quizQuestions.getOption2());
-                    b3.setText(quizQuestions.getOption3());
-                    b4.setText(quizQuestions.getOption4());
-
-                    b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b4.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                    b1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            //answer if correct
-                            if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b1.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion4();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b1.setBackgroundColor(Color.RED);
-
-                                if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion4();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                    b2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if (b2.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b2.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion4();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b2.setBackgroundColor(Color.RED);
-
-                                if (b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                } else if (b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                } else if (b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion4();
-                                    }
-                                }, 1500);
-                            }
-                        }
-                    });
-
-                    b3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b3.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion4();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b3.setBackgroundColor(Color.RED);
-
-                                if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion4();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                    b4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b4.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b4.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion4();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b4.setBackgroundColor(Color.RED);
-
-                                if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion4();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                }
-            }
-        });
-
-    }
-    public void loadQuestion4() {
-
-        Intent intent = getIntent();
-        String path = intent.getStringExtra(QuizDescriptionActivity.KEY_START_QUIZ_PATH);
-        CollectionReference questionOn = db.collection(path);
-
-        questionOn.whereEqualTo("tag","4").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    return;
-                }
-
-                for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
-                    final QuizQuestions quizQuestions = documentSnapshot.toObject(QuizQuestions.class);
-
-                    question.setText(quizQuestions.getQuestion());
-                    b1.setText(quizQuestions.getOption1());
-                    b2.setText(quizQuestions.getOption2());
-                    b3.setText(quizQuestions.getOption3());
-                    b4.setText(quizQuestions.getOption4());
-
-                    b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b4.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                    b1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            //answer if correct
-                            if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b1.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion5();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b1.setBackgroundColor(Color.RED);
-
-                                if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion5();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                    b2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if (b2.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b2.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion5();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b2.setBackgroundColor(Color.RED);
-
-                                if (b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                } else if (b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                } else if (b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion5();
-                                    }
-                                }, 1500);
-                            }
-                        }
-                    });
-
-                    b3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b3.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion5();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b3.setBackgroundColor(Color.RED);
-
-                                if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion5();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                    b4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b4.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b4.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        loadQuestion5();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b4.setBackgroundColor(Color.RED);
-
-                                if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadQuestion5();
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                }
-            }
-        });
-
-    }
-
-    public void loadQuestion5() {
-
-        Intent intent = getIntent();
-        String path = intent.getStringExtra(QuizDescriptionActivity.KEY_START_QUIZ_PATH);
-        CollectionReference questionOn = db.collection(path);
-
-        questionOn.whereEqualTo("tag","5").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    return;
-                }
-
-                for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
-                    final QuizQuestions quizQuestions = documentSnapshot.toObject(QuizQuestions.class);
-
-                    question.setText(quizQuestions.getQuestion());
-                    b1.setText(quizQuestions.getOption1());
-                    b2.setText(quizQuestions.getOption2());
-                    b3.setText(quizQuestions.getOption3());
-                    b4.setText(quizQuestions.getOption4());
-
-                    b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b4.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                    b1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            //answer if correct
-                            if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b1.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        System.out.println(correct);
-                                        System.out.println(wrong);
-                                        goToQuizResults();
-
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b1.setBackgroundColor(Color.RED);
-
-                                if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        goToQuizResults();
-
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                    b2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if (b2.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b2.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        goToQuizResults();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b2.setBackgroundColor(Color.RED);
-
-                                if (b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                } else if (b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                } else if (b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        goToQuizResults();
-
-                                    }
-                                }, 1500);
-                            }
-                        }
-                    });
-
-                    b3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b3.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        goToQuizResults();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b3.setBackgroundColor(Color.RED);
-
-                                if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        goToQuizResults();
-
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                    b4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //answer if correct
-                            if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-
-                                //change colours here
-                                b4.setBackgroundColor(Color.GREEN);
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        correct++;
-
-                                        //change colours here
-                                        b4.setBackgroundColor(Color.parseColor("#03A9f4"));
-
-                                        goToQuizResults();
-                                    }
-                                }, 1500);
-                            }
-
-                            //answer if wrong
-                            else {
-
-                                wrong++;
-                                b4.setBackgroundColor(Color.RED);
-
-                                if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
-                                }
-
-                                else if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
-                                }
-
-
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        System.out.println(correct);
-                                        System.out.println(wrong);
-                                        goToQuizResults();
-
-                                    }
-                                },1500);
-                            }
-                        }
-                    });
-
-                }
-            }
-        });
 
     }
 
