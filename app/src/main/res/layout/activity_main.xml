@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,8 +11,8 @@
         android:id="@+id/any_chart_view"
         android:layout_width="292dp"
         android:layout_height="248dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -35,25 +36,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/searchView" />
 
-    <TextView
-        android:id="@+id/testText"
-        android:layout_width="144dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="228dp"
-        android:layout_marginBottom="234dp"
-        android:text="Inspirational Quote Here"
-        app:layout_constraintBottom_toBottomOf="@+id/any_chart_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/quote_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="127dp"
         android:layout_marginBottom="127dp"
-        android:text="Button"
+        android:text="Quizzes"
         app:layout_constraintBottom_toTopOf="@+id/any_chart_view"
         app:layout_constraintStart_toStartOf="@+id/quote"
         app:layout_constraintTop_toTopOf="@+id/searchView" />
@@ -81,15 +70,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/test2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="104dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/testText"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

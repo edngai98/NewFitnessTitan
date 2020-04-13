@@ -64,6 +64,7 @@ public class StartQuizActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String path = intent.getStringExtra(QuizDescriptionActivity.KEY_START_QUIZ_PATH);
+        System.out.println(path);
         CollectionReference questionOn = db.collection(path);
         questionOn.whereEqualTo("tag","1").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

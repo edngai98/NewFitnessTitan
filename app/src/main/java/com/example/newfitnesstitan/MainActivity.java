@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textViewData = findViewById(R.id.testText);
-        testViewData = findViewById(R.id.test2);
+        //textViewData = findViewById(R.id.testText);
+        //testViewData = findViewById(R.id.test2);
 
         Button quizzes_button = findViewById(R.id.quote_button);
         quizzes_button.setOnClickListener(new View.OnClickListener() {
