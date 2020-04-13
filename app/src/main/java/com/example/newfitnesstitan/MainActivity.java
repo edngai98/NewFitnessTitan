@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         quizzes_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 goToQuizzes();
             }
         });
@@ -114,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
 
     }
 

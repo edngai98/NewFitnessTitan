@@ -24,8 +24,6 @@ import org.w3c.dom.Text;
 public class StartQuizActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference quizListRef = db.collection("users/admin/quiz results");
-    private CollectionReference getQuizDatabase = db.collection("quizzes");
 
     Button b1, b2, b3, b4;
     TextView question, quizTitle;
@@ -33,7 +31,6 @@ public class StartQuizActivity extends AppCompatActivity {
     int total = 1;
     int correct = 0;
     int wrong = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,38 +43,29 @@ public class StartQuizActivity extends AppCompatActivity {
         b4 = findViewById(R.id.option4);
         question = findViewById(R.id.question_name);
         quizTitle = findViewById(R.id.in_quiz_name);
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
         Intent intent = getIntent();
         String inQuizName = intent.getStringExtra("quiz_name_key");
         quizTitle.setText(inQuizName);
-
-
-        loadQuestion(total);
+        loadQuestion();
         total = 1;
-
-
     }
 
-
-
-    public void loadQuestion(int q) {
+    public void loadQuestion() {
         if (total > 5) {
             goToQuizResults();
             return;
         }
 
-
         Intent intent = getIntent();
         String path = intent.getStringExtra(QuizDescriptionActivity.KEY_START_QUIZ_PATH);
         System.out.println(path);
         CollectionReference questionOn = db.collection(path);
-        String qNo = String.valueOf(q);
+        String qNo = String.valueOf(total);
 
         questionOn.whereEqualTo("tag",qNo).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -119,7 +107,7 @@ public class StartQuizActivity extends AppCompatActivity {
                                             b1.setBackgroundColor(Color.parseColor("#03A9f4"));
 
                                             total++;
-                                            loadQuestion(total);
+                                            loadQuestion();
 
                                         }
                                     }, 1500);
@@ -143,14 +131,13 @@ public class StartQuizActivity extends AppCompatActivity {
                                         b4.setBackgroundColor(Color.GREEN);
                                     }
 
-
                                     Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
 
                                             total++;
-                                            loadQuestion(total);
+                                            loadQuestion();
 
                                         }
                                     },1500);
@@ -176,7 +163,7 @@ public class StartQuizActivity extends AppCompatActivity {
                                             b2.setBackgroundColor(Color.parseColor("#03A9f4"));
 
                                             total++;
-                                            loadQuestion(total);
+                                            loadQuestion();
                                         }
                                     }, 1500);
                                 }
@@ -195,14 +182,13 @@ public class StartQuizActivity extends AppCompatActivity {
                                         b4.setBackgroundColor(Color.GREEN);
                                     }
 
-
                                     Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
 
                                             total++;
-                                            loadQuestion(total);
+                                            loadQuestion();
 
                                         }
                                     }, 1500);
@@ -228,7 +214,7 @@ public class StartQuizActivity extends AppCompatActivity {
                                             b3.setBackgroundColor(Color.parseColor("#03A9f4"));
 
                                             total++;
-                                            loadQuestion(total);
+                                            loadQuestion();
                                         }
                                     }, 1500);
                                 }
@@ -258,7 +244,7 @@ public class StartQuizActivity extends AppCompatActivity {
                                         public void run() {
 
                                             total++;
-                                            loadQuestion(total);
+                                            loadQuestion();
 
                                         }
                                     },1500);
@@ -284,7 +270,7 @@ public class StartQuizActivity extends AppCompatActivity {
                                             b4.setBackgroundColor(Color.parseColor("#03A9f4"));
 
                                             total++;
-                                            loadQuestion(total);
+                                            loadQuestion();
                                         }
                                     }, 1500);
                                 }
@@ -307,14 +293,13 @@ public class StartQuizActivity extends AppCompatActivity {
                                         b1.setBackgroundColor(Color.GREEN);
                                     }
 
-
                                     Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
 
                                             total++;
-                                            loadQuestion(total);
+                                            loadQuestion();
                                         }
                                     },1500);
                                 }
@@ -329,8 +314,6 @@ public class StartQuizActivity extends AppCompatActivity {
 
     public void goToQuizResults() {
         Intent intent2 = new Intent(this, QuizResult.class);
-        System.out.println(correct);
-        System.out.println(wrong);
         String temp = String.valueOf(correct);
         String temp2 = String.valueOf(wrong);
 

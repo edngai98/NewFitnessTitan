@@ -85,9 +85,6 @@ public class QuizDescriptionActivity extends AppCompatActivity {
                         }
                     });
 
-
-
-
                 }
             }
         });
