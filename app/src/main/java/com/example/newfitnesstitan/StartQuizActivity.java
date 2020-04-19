@@ -6,20 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.newfitnesstitan.QuizContent.QuizQuestions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Text;
 
 public class StartQuizActivity extends AppCompatActivity {
 
@@ -313,13 +311,19 @@ public class StartQuizActivity extends AppCompatActivity {
     }
 
     public void goToQuizResults() {
-        Intent intent2 = new Intent(this, QuizResult.class);
+        Intent intent2 = new Intent(this, QuizResultActivity.class);
         String temp = String.valueOf(correct);
         String temp2 = String.valueOf(wrong);
+
+        Intent i = getIntent();
+        String login = i.getStringExtra("loginDetails3");
+        System.out.println("StartQuizActivity");
+        System.out.println(login);
 
         intent2.putExtra("title", quizTitle.getText().toString());
         intent2.putExtra("correct", temp);
         intent2.putExtra("wrong", temp2);
+        intent2.putExtra("loginDetails4", login);
         startActivity(intent2);
     }
 

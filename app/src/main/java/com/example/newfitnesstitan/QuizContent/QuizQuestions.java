@@ -1,4 +1,4 @@
-package com.example.newfitnesstitan;
+package com.example.newfitnesstitan.QuizContent;
 
 public class QuizQuestions {
 

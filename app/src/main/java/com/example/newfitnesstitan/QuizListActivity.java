@@ -8,11 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.newfitnesstitan.QuizContent.QuizDescriptions;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 public class QuizListActivity extends AppCompatActivity {
 
@@ -36,8 +36,8 @@ public class QuizListActivity extends AppCompatActivity {
 
     private void setUpRecyclerView() {
         //Query query = quizListRef.orderBy("result", Query.Direction.DESCENDING);
-        FirestoreRecyclerOptions<Quizzes> options = new FirestoreRecyclerOptions.Builder<Quizzes>()
-                .setQuery(getQuizDatabase, Quizzes.class)
+        FirestoreRecyclerOptions<QuizDescriptions> options = new FirestoreRecyclerOptions.Builder<QuizDescriptions>()
+                .setQuery(getQuizDatabase, QuizDescriptions.class)
                 .build();
 
         adapter = new QuizAdapter(options);
@@ -49,14 +49,21 @@ public class QuizListActivity extends AppCompatActivity {
 
         Intent intent = new Intent (this, QuizDescriptionActivity.class);
 
+
         adapter.setOnItemClickListener(new QuizAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                Quizzes quiz = documentSnapshot.toObject(Quizzes.class);
+                QuizDescriptions quiz = documentSnapshot.toObject(QuizDescriptions.class);
                 String path = documentSnapshot.getReference().getPath();
+                Intent i = getIntent();
+                String login = i.getStringExtra("loginDetails");
+                System.out.println(login);
                 System.out.println(path);
+                System.out.println("QuizListActivity");
+
                 Toast.makeText(QuizListActivity.this, "", Toast.LENGTH_SHORT).show();
                 intent.putExtra(KEY_PATH,path);
+                intent.putExtra("loginDetails2", login);
                 startActivity(intent);
                 //goToQuizDescription();
             }
@@ -75,8 +82,4 @@ public class QuizListActivity extends AppCompatActivity {
         adapter.stopListening();
     }
 
-    private void goToQuizDescription() {
-        Intent intent = new Intent(this, QuizDescriptionActivity.class);
-        startActivity(intent);
-    }
 }

@@ -1,4 +1,4 @@
-package com.example.newfitnesstitan;
+package com.example.newfitnesstitan.UserResults;
 
 //import com.google.firebase.database.Exclude;
 

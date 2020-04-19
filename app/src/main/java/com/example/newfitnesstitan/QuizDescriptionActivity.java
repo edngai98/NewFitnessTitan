@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.newfitnesstitan.QuizContent.QuizDescriptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class QuizDescriptionActivity extends AppCompatActivity {
 
@@ -24,11 +23,8 @@ public class QuizDescriptionActivity extends AppCompatActivity {
     private CollectionReference quizListRef = db.collection("users/admin/quiz results");
     private CollectionReference createAcc = db.collection("users");
     private CollectionReference getQuizDatabase = db.collection("quizzes");
-    //private DocumentSnapshot getSpecificQuiz = db.collection("quizzes").document();
 
     public static final String KEY_START_QUIZ_PATH = "start quiz";
-
-
 
     private TextView name, description;
 
@@ -62,9 +58,9 @@ public class QuizDescriptionActivity extends AppCompatActivity {
                 }
 
                 if (documentSnapshot.exists()) {
-                    Quizzes quizzes = documentSnapshot.toObject(Quizzes.class);
-                    String quiz_name = quizzes.getName();
-                    String quiz_description = quizzes.getDescription();
+                    QuizDescriptions quizDescriptions = documentSnapshot.toObject(QuizDescriptions.class);
+                    String quiz_name = quizDescriptions.getName();
+                    String quiz_description = quizDescriptions.getDescription();
                     name.setText(quiz_name);
                     description.setText(quiz_description);
 
@@ -73,11 +69,15 @@ public class QuizDescriptionActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             String path2 = documentSnapshot.getReference().getPath() +"/Details";
-
+                            Intent i = getIntent();
+                            String login = i.getStringExtra("loginDetails2");
+                            System.out.println(login);
                             System.out.println(path2);
+                            System.out.println("QuizDescriptionActivity");
 
                             intent2.putExtra(KEY_START_QUIZ_PATH, path2);
                             intent2.putExtra("quiz_name_key", quiz_name);
+                            intent2.putExtra("loginDetails3", login);
 
                             System.out.println(intent2);
                             startActivity(intent2);

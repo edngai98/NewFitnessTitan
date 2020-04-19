@@ -1,6 +1,5 @@
 package com.example.newfitnesstitan;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,22 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.newfitnesstitan.QuizContent.QuizDescriptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class QuizAdapter extends FirestoreRecyclerAdapter<Quizzes, QuizAdapter.QuizHolder> {
+public class QuizAdapter extends FirestoreRecyclerAdapter<QuizDescriptions, QuizAdapter.QuizHolder> {
 
     private QuizAdapter.OnItemClickListener listener;
 
-    public QuizAdapter(@NonNull FirestoreRecyclerOptions<Quizzes> options) {
+    public QuizAdapter(@NonNull FirestoreRecyclerOptions<QuizDescriptions> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull QuizAdapter.QuizHolder holder, int position, @NonNull Quizzes quizzes) {
-        holder.name.setText(quizzes.getName());
-        holder.description.setText(quizzes.getDescription());
+    protected void onBindViewHolder(@NonNull QuizAdapter.QuizHolder holder, int position, @NonNull QuizDescriptions quizDescriptions) {
+        holder.name.setText(quizDescriptions.getName());
+        holder.description.setText(quizDescriptions.getDescription());
         //holder.result.setText(String.valueOf(quizzes.getResult()));
         //holder.result_bar.setRating(Float.parseFloat(String.valueOf(quizzes.getResult())));
 

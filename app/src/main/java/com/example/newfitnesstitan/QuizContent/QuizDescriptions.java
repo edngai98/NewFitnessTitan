@@ -1,15 +1,15 @@
-package com.example.newfitnesstitan;
+package com.example.newfitnesstitan.QuizContent;
 
-public class Quizzes {
+public class QuizDescriptions {
 
     private String name;
     private String description;
 
-    public Quizzes () {
+    public QuizDescriptions() {
 
     }
 
-    public Quizzes(String name, String description) {
+    public QuizDescriptions(String name, String description) {
         this.name = name;
         this.description = description;
     }
