@@ -317,8 +317,6 @@ public class StartQuizActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String login = i.getStringExtra("loginDetails3");
-        System.out.println("StartQuizActivity");
-        System.out.println(login);
 
         intent2.putExtra("title", quizTitle.getText().toString());
         intent2.putExtra("correct", temp);

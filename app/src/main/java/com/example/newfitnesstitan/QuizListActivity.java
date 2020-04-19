@@ -35,7 +35,7 @@ public class QuizListActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        //Query query = quizListRef.orderBy("result", Query.Direction.DESCENDING);
+
         FirestoreRecyclerOptions<QuizDescriptions> options = new FirestoreRecyclerOptions.Builder<QuizDescriptions>()
                 .setQuery(getQuizDatabase, QuizDescriptions.class)
                 .build();
@@ -53,19 +53,16 @@ public class QuizListActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new QuizAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                QuizDescriptions quiz = documentSnapshot.toObject(QuizDescriptions.class);
+
                 String path = documentSnapshot.getReference().getPath();
                 Intent i = getIntent();
                 String login = i.getStringExtra("loginDetails");
-                System.out.println(login);
-                System.out.println(path);
-                System.out.println("QuizListActivity");
 
                 Toast.makeText(QuizListActivity.this, "", Toast.LENGTH_SHORT).show();
                 intent.putExtra(KEY_PATH,path);
                 intent.putExtra("loginDetails2", login);
                 startActivity(intent);
-                //goToQuizDescription();
+
             }
         });
     }

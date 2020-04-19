@@ -1,12 +1,10 @@
 package com.example.newfitnesstitan;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,19 +19,12 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
-import com.example.newfitnesstitan.UserResults.MyQuizResults;
 import com.example.newfitnesstitan.UserResults.Users;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 //import com.anychart.sample.R;
 
 import java.util.ArrayList;
@@ -52,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     public Users users;
     String name;
     int a;
-    Map<String, Integer> answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +67,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         String className = getIntent().getStringExtra("class");
-//        if(className.equals("false")) {
 
             Intent intent = getIntent();
             String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-            
+
             DocumentReference quizResultRef = db.document("users/" + login);
 
             AnyChartView anyChartView = findViewById(R.id.any_chart_view);
@@ -108,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     name = getIntent().getStringExtra("quizNameQR");
                                     a = Integer.parseInt(Objects.requireNonNull(getIntent().getStringExtra("quizResultScore")));
-                                    //answer = q;
+
                                     if(q.getValue() == a){
                                         return;
                                     } else {
@@ -139,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
                         //cartesian.animation(true);
                         cartesian.title("My Progress");
 
-                        cartesian.yScale().minimum(0d);
+                        cartesian.yScale().minimum(0);
+                        cartesian.yScale().maximum(5);
 
                         cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
 
@@ -156,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-//    }
 
 
     public void goToQuizzes() {

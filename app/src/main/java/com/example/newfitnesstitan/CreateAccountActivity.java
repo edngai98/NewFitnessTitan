@@ -8,14 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.newfitnesstitan.UserResults.MyQuizResults;
 import com.example.newfitnesstitan.UserResults.Users;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -43,10 +40,6 @@ public class CreateAccountActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        //for loop to create a list of quizzes
-
-
-
         createAccButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,11 +54,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(CreateAccountActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-
-
                     }
                 });
-
 
             }
         });

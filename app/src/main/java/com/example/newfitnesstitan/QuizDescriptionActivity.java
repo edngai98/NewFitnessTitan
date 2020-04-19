@@ -32,7 +32,6 @@ public class QuizDescriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_description);
-
         name = findViewById(R.id.tvQuizName);
         description = findViewById(R.id.quiz_description_text);
 
@@ -71,15 +70,11 @@ public class QuizDescriptionActivity extends AppCompatActivity {
                             String path2 = documentSnapshot.getReference().getPath() +"/Details";
                             Intent i = getIntent();
                             String login = i.getStringExtra("loginDetails2");
-                            System.out.println(login);
-                            System.out.println(path2);
-                            System.out.println("QuizDescriptionActivity");
 
                             intent2.putExtra(KEY_START_QUIZ_PATH, path2);
                             intent2.putExtra("quiz_name_key", quiz_name);
                             intent2.putExtra("loginDetails3", login);
 
-                            System.out.println(intent2);
                             startActivity(intent2);
 
                         }
@@ -89,10 +84,6 @@ public class QuizDescriptionActivity extends AppCompatActivity {
             }
         });
     }
-
-    //create user
-
-    //create quiz results document - method
 
 
 }
