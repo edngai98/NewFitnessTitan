@@ -28,7 +28,6 @@ public class QuizResultActivity extends AppCompatActivity {
         wrong_answers = findViewById(R.id.tvWrong);
         quiz_title = findViewById(R.id.quizname);
 
-
     }
 
 

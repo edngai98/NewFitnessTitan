@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -13,17 +14,26 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+
+import java.io.File;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizListActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    //need to create reference for each quiz that is done
-    private CollectionReference quizListRef = db.collection("users/admin/quiz results");
+
     private CollectionReference getQuizDatabase = db.collection("quizzes");
+    private StorageReference mReference;
 
     public static final String KEY_PATH = "path needed";
 
     private QuizAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,7 @@ public class QuizListActivity extends AppCompatActivity {
                 .setQuery(getQuizDatabase, QuizDescriptions.class)
                 .build();
 
+
         adapter = new QuizAdapter(options);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
@@ -48,6 +59,7 @@ public class QuizListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         Intent intent = new Intent (this, QuizDescriptionActivity.class);
+
 
 
         adapter.setOnItemClickListener(new QuizAdapter.OnItemClickListener() {
@@ -78,5 +90,6 @@ public class QuizListActivity extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
+
 
 }

@@ -20,9 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class QuizDescriptionActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference quizListRef = db.collection("users/admin/quiz results");
-    private CollectionReference createAcc = db.collection("users");
-    private CollectionReference getQuizDatabase = db.collection("quizzes");
 
     public static final String KEY_START_QUIZ_PATH = "start quiz";
 

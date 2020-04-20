@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anychart.AnyChart;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tvHelloMate;
     private TextView testViewData;
+    private ImageView image;
 
     public Users users;
     String name;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvHelloMate = findViewById(R.id.textView2);
         Button quizzes_button = findViewById(R.id.quote_button);
+
 
         quizzes_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        String className = getIntent().getStringExtra("class");
 
             Intent intent = getIntent();
             String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     if (documentSnapshot.exists()) {
                         users = documentSnapshot.toObject(Users.class);
                         String className = getIntent().getStringExtra("class");
+                        tvHelloMate.setText("Hello " + users.getFirst() +",");
                         if(className.equals("true")) {
 
                             for(Map.Entry<String, Integer> q : users.getQuizResults().entrySet()) {
@@ -121,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
                                 .titleFormat("{%X}")
                                 .position(Position.CENTER_BOTTOM)
                                 .anchor(Anchor.CENTER_BOTTOM)
-                                .offsetX(0d)
-                                .offsetY(5d)
+                                .offsetX(0)
+                                .offsetY(5)
                                 .format("{%Value}{groupsSeparator: }");
 
                         //cartesian.animation(true);
@@ -145,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-
 
     public void goToQuizzes() {
         Intent intent = getIntent();
