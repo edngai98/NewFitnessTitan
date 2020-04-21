@@ -87,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                     intent.putExtra(KEY_LOGIN_TO_MAIN, path);
                                     intent.putExtra("class", "false");
-
                                     startActivity(intent);
 
                                 }

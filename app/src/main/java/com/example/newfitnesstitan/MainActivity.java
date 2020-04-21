@@ -62,22 +62,12 @@ public class MainActivity extends AppCompatActivity {
         quizzes_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 goToQuizzes();
             }
         });
 
-        image = findViewById(R.id.imageFromDB);
-        System.out.println(storageReference.getPath());
+        image = findViewById(R.id.editProfile);
 
-        storageReference.getDownloadUrl();
-        System.out.println(storageReference.getDownloadUrl());
-
-        Glide.with(this)
-                .load(storageReference)
-                .centerCrop()
-                .placeholder(R.mipmap.ic_launcher)
-                .into(image);
 
     }
 
@@ -89,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
 
             DocumentReference quizResultRef = db.document("users/" + login);
+
+            Intent i = new Intent(this, EditProfileActivity.class);
 
             AnyChartView anyChartView = findViewById(R.id.any_chart_view);
             anyChartView.setProgressBar(findViewById(R.id.progress_bar));
@@ -162,6 +154,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = getIntent();
+                    String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
+                    i.putExtra("editProfile", login);
+                    startActivity(i);
+                }
+            });
         }
 
     public void goToQuizzes() {
@@ -171,4 +173,6 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("loginDetails", login);
         startActivity(i);
     }
+
+
 }

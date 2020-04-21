@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.newfitnesstitan.UserResults.Users;
@@ -23,6 +24,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private EditText user_first_name, user_last_name, user_id, user_password;
     private Button createAccButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         user_id = findViewById(R.id.etUser);
         user_password = findViewById(R.id.etPass);
         createAccButton = findViewById(R.id.btnCreateAcc);
+
+
 
     }
 
@@ -60,7 +64,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 
