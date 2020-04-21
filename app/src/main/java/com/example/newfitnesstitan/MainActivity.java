@@ -20,12 +20,15 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
+import com.bumptech.glide.Glide;
 import com.example.newfitnesstitan.UserResults.Users;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 //import com.anychart.sample.R;
 
 import java.util.ArrayList;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     //private CollectionReference quizListRef = db.collection("users/admin/quiz results");
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://fitnesstitan-5ed50.appspot.com/api.png");
 
     private TextView tvHelloMate;
     private TextView testViewData;
@@ -62,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
                 goToQuizzes();
             }
         });
+
+        image = findViewById(R.id.imageFromDB);
+        System.out.println(storageReference.getPath());
+
+        storageReference.getDownloadUrl();
+        System.out.println(storageReference.getDownloadUrl());
+
+        Glide.with(this)
+                .load(storageReference)
+                .centerCrop()
+                .placeholder(R.mipmap.ic_launcher)
+                .into(image);
 
     }
 
@@ -153,8 +169,6 @@ public class MainActivity extends AppCompatActivity {
         String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
         Intent i = new Intent(this, QuizListActivity.class);
         i.putExtra("loginDetails", login);
-
-        System.out.println(login);
         startActivity(i);
     }
 }

@@ -28,7 +28,7 @@ public class QuizListActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private CollectionReference getQuizDatabase = db.collection("quizzes");
-    private StorageReference mReference;
+
 
     public static final String KEY_PATH = "path needed";
 
@@ -39,7 +39,6 @@ public class QuizListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_list_activity);
-
         setUpRecyclerView();
 
     }

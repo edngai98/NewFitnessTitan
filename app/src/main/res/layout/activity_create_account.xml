@@ -7,7 +7,7 @@
     tools:context=".CreateAccountActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageFromDB"
         android:layout_width="196dp"
         android:layout_height="194dp"
         android:layout_marginStart="107dp"
@@ -35,7 +35,7 @@
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageFromDB" />
 
     <EditText
         android:id="@+id/etLast"

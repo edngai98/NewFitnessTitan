@@ -12,36 +12,43 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.newfitnesstitan.QuizContent.QuizDescriptions;
 import com.example.newfitnesstitan.UserResults.Users;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.protobuf.compiler.PluginProtos;
 
-
-
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class QuizAdapter extends FirestoreRecyclerAdapter<QuizDescriptions, QuizAdapter.QuizHolder> {
 
-    private Context context;
-    private List<QuizDescriptions> mUploads;
+    public Context context;
 
 
     private QuizAdapter.OnItemClickListener listener;
 
     public QuizAdapter(@NonNull FirestoreRecyclerOptions<QuizDescriptions> options) {
         super(options);
-
     }
 
     @Override
     protected void onBindViewHolder(@NonNull QuizAdapter.QuizHolder holder, int position, @NonNull QuizDescriptions quizDescriptions) {
-        //QuizDescriptions uploadCurrent = mUploads.get(position);
+
         holder.name.setText(quizDescriptions.getName());
-        holder.description.setText(quizDescriptions.getDescription());
-        //holder.result.setText(String.valueOf(quizzes.getResult()));
-        //holder.result_bar.setRating(Float.parseFloat(String.valueOf(quizzes.getResult())));
+        //holder.description.setText(quizDescriptions.getDescription());
+        Glide.with(holder.itemView.getContext())
+                .load(FirebaseStorage.getInstance().getReferenceFromUrl(quizDescriptions.getImage()))
+                .centerCrop()
+                .override(250,250)
+                .into(holder.image);
 
     }
 
@@ -57,14 +64,13 @@ public class QuizAdapter extends FirestoreRecyclerAdapter<QuizDescriptions, Quiz
         ImageView image;
 
 
-
         public QuizHolder (View view) {
             super(view);
             name = view.findViewById(R.id.quiz_name);
-            description = view.findViewById(R.id.quiz_short_description);
+            //description = view.findViewById(R.id.quiz_short_description);
             image = view.findViewById(R.id.imageView);
-            //result = view.findViewById(R.id.quiz_result);
-            //result_bar = view.findViewById(R.id.quiz_score_bar);
+
+
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

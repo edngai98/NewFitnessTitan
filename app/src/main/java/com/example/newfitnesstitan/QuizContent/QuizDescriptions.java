@@ -4,16 +4,16 @@ public class QuizDescriptions {
 
     private String name;
     private String description;
-    private String mImageUrl;
+    private String image;
 
     public QuizDescriptions() {
 
     }
 
-    public QuizDescriptions(String name, String description, String mImageUrl) {
+    public QuizDescriptions(String name, String description, String image) {
         this.name = name;
         this.description = description;
-        this.mImageUrl = mImageUrl;
+        this.image = image;
     }
 
     public String getName() {
@@ -32,11 +32,11 @@ public class QuizDescriptions {
         this.description = description;
     }
 
-    public String getmImageUrl() {
-        return mImageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setmImageUrl(String mImageUrl) {
-        this.mImageUrl = mImageUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 }
