@@ -54,7 +54,7 @@ public class DashboardFragment extends Fragment {
     private ImageView image;
     private Context context;
     private Button quizzes_button;
-
+    private ListenerRegistration registration;
     public Users users;
     String name;
     int a;
@@ -123,7 +123,7 @@ public class DashboardFragment extends Fragment {
         System.out.println(login);
         if (!temp.equals("true")) {
             final DocumentReference quizResultRef = db.document("users/" + login);
-            quizResultRef.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
+            registration = quizResultRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                     if (e != null) {
@@ -207,6 +207,13 @@ public class DashboardFragment extends Fragment {
 
         }
 
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        registration.remove();
 
     }
 
