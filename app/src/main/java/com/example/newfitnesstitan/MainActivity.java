@@ -26,7 +26,7 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 import com.example.newfitnesstitan.UserResults.Users;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentReference;
