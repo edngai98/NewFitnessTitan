@@ -11,6 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#8869CDBB"
         android:padding="8dp">
 
         <ImageView
@@ -28,6 +29,7 @@
             android:layout_marginTop="20dp"
             android:layout_toStartOf="@id/quiz_result"
             android:ellipsize="end"
+            android:fontFamily="@font/roboto_bold"
             android:maxLines="1"
             android:text="Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />

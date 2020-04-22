@@ -67,8 +67,8 @@
 
     <Button
         android:id="@+id/StartQuiz"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
+        android:layout_width="337dp"
+        android:layout_height="45dp"
         android:layout_marginStart="34dp"
         android:layout_marginTop="17dp"
         android:background="@drawable/rounded_corners_button"
