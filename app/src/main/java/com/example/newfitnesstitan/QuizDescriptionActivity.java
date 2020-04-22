@@ -87,8 +87,6 @@ public class QuizDescriptionActivity extends AppCompatActivity {
                             .load(FirebaseStorage.getInstance().getReferenceFromUrl(a))
                             .into(image);
 
-
-
                     Button button = findViewById(R.id.StartQuiz);
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override

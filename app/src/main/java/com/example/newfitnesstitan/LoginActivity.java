@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.newfitnesstitan.UserResults.Users;
@@ -72,7 +73,9 @@ public class LoginActivity extends AppCompatActivity {
     private void validate(String userName, String userPassword){
 
         Intent intent = new Intent(this, MainActivity.class);
-
+//        Bundle arguments = new Bundle();
+//        DashboardFragment fragment = new DashboardFragment();
+//        fragment.setArguments(arguments);
 
         checkAcc.whereEqualTo("username", userName)
                 .whereEqualTo("password", userPassword)
@@ -84,8 +87,10 @@ public class LoginActivity extends AppCompatActivity {
                             if(task.getResult().size() > 0) {
                                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                     String path = documentSnapshot.getId();
-
+//                                    arguments.putString(KEY_LOGIN_TO_MAIN, path);
+//                                    arguments.putString("class", "false");
                                     intent.putExtra(KEY_LOGIN_TO_MAIN, path);
+                                    intent.putExtra("secure", "true1");
                                     intent.putExtra("class", "false");
                                     startActivity(intent);
 

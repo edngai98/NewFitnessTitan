@@ -11,38 +11,57 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quiz Result"
-        android:textSize="40dp"/>
+        android:fontFamily="@font/roboto_bold"
+        android:text="Way to go! "
+        android:textColor="@color/colorAccent"
+        android:textSize="40dp" />
 
     <TextView
         android:id="@+id/quizname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
         android:hint="Quiz Name"
-        android:textSize="28dp"/>
+        android:paddingTop="20dp"
+        android:textColor="#43BFB3"
+        android:textSize="28dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp"
+        android:text="You have completed this quiz. " />
 
     <TextView
         android:id="@+id/tvCorrect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:hint="Result"
-        android:textSize="32dp"/>
+        android:inputType="number"
+        android:paddingBottom="10dp"
+        android:textColor="#4CAF50"
+        android:textSize="32dp" />
 
     <TextView
         android:id="@+id/tvWrong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:hint="Result"
-        android:textSize="32dp"/>
+        android:inputType="number"
+        android:paddingBottom="60dp"
+        android:textColor="#F44336"
+        android:textSize="32dp" />
 
 
     <Button
         android:id="@+id/SetQuizResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners_button"
+        android:fontFamily="@font/roboto_bold"
         android:text="Finish and Save Result"
+        android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="157dp"
         tools:layout_editor_absoluteY="216dp" />
 

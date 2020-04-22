@@ -12,16 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditProfileActivity"></activity>
-        <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".EditProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".CreateAccountActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".StartQuizActivity"
-            android:parentActivityName=".QuizDescriptionActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".QuizDescriptionActivity" />
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,26 +30,19 @@
         </activity>
         <activity
             android:name=".QuizListActivity"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".QuizDescriptionActivity"
-            android:parentActivityName=".QuizListActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".QuizListActivity" />
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".QuizResultActivity"
-            android:parentActivityName=".QuizListActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".QuizListActivity" />
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
 
         <meta-data
             android:name="preloaded_fonts"
