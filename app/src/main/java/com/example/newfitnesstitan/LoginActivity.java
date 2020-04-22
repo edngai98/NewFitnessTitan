@@ -50,9 +50,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        Name = findViewById(R.id.etName);
-        Password = findViewById(R.id.etPassword);
-        Signin = findViewById(R.id.btnSignIn);
+        Name = findViewById(R.id.etFirst);
+        Password = findViewById(R.id.etUser);
+        Signin = findViewById(R.id.btnCreateAcc);
         createAccountText = findViewById(R.id.createAcc);
         createAccountText.setOnClickListener(new View.OnClickListener() {
             @Override
