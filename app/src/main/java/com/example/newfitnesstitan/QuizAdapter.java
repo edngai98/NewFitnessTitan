@@ -31,8 +31,6 @@ import java.util.List;
 public class QuizAdapter extends FirestoreRecyclerAdapter<QuizDescriptions, QuizAdapter.QuizHolder> {
 
     public Context context;
-
-
     private QuizAdapter.OnItemClickListener listener;
 
     public QuizAdapter(@NonNull FirestoreRecyclerOptions<QuizDescriptions> options) {
@@ -69,8 +67,6 @@ public class QuizAdapter extends FirestoreRecyclerAdapter<QuizDescriptions, Quiz
             name = view.findViewById(R.id.quiz_name);
             //description = view.findViewById(R.id.quiz_short_description);
             image = view.findViewById(R.id.imageView);
-
-
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

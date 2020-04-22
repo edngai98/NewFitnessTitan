@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -21,6 +22,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference checkAcc = db.collection("users");
+    private DocumentReference doc;
 
     private EditText user_first_name, user_last_name, user_id, user_password;
     private Button saveButton;
@@ -43,7 +45,7 @@ public class EditProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String login = intent.getStringExtra("editProfile");
 
-        DocumentReference doc = db.collection("users").document(login);
+        doc = db.collection("users").document(login);
 
         doc.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -58,6 +60,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        //if statements
         String first = user_first_name.getText().toString();
         String last = user_last_name.getText().toString();
         String username = user_id.getText().toString();
@@ -65,7 +68,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Users users = new Users(username, userPass, first, last);
 
-        doc.set(users);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doc.set(users);
+            }
+        });
 
 
     }

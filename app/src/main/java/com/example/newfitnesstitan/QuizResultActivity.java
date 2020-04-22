@@ -28,6 +28,7 @@ public class QuizResultActivity extends AppCompatActivity {
         wrong_answers = findViewById(R.id.tvWrong);
         quiz_title = findViewById(R.id.quizname);
 
+
     }
 
 
@@ -48,6 +49,7 @@ public class QuizResultActivity extends AppCompatActivity {
         Button update_button = findViewById(R.id.SetQuizResult);
         Intent intent2 = new Intent(this, MainActivity.class);
 
+
         //Update Quiz
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,12 +59,23 @@ public class QuizResultActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 String login = intent.getStringExtra("loginDetails4");
 
-                intent2.putExtra("quizNameQR", name);
-                intent2.putExtra("quizResultScore", String.valueOf(value));
-                intent2.putExtra("class", "true");
-                intent2.putExtra(LoginActivity.KEY_LOGIN_TO_MAIN, login);
+                Bundle arguments = new Bundle();
+                DashboardFragment fragment = new DashboardFragment();
+                fragment.setArguments(arguments);
+                arguments.putString("quizNameQR", name);
+                arguments.putString("quizResultScore", String.valueOf(value));
+                arguments.putString("class", "true");
+                arguments.putString("checker", "true1");
+                arguments.putString(LoginActivity.KEY_LOGIN_TO_MAIN, login);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new DashboardFragment()).commit();
 
-                startActivity(intent2);
+//                intent2.putExtra("quizNameQR", name);
+//                intent2.putExtra("quizResultScore", String.valueOf(value));
+//                intent2.putExtra("class", "true");
+//                intent2.putExtra(LoginActivity.KEY_LOGIN_TO_MAIN, login);
+
+//                startActivity(intent2);
 
             }
         });

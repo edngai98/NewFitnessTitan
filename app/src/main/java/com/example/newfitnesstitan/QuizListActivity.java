@@ -26,14 +26,9 @@ import java.util.List;
 public class QuizListActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     private CollectionReference getQuizDatabase = db.collection("quizzes");
-
-
     public static final String KEY_PATH = "path needed";
-
     private QuizAdapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +53,6 @@ public class QuizListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         Intent intent = new Intent (this, QuizDescriptionActivity.class);
-
-
 
         adapter.setOnItemClickListener(new QuizAdapter.OnItemClickListener() {
             @Override
