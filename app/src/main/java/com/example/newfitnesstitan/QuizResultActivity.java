@@ -59,6 +59,17 @@ public class QuizResultActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 String login = intent.getStringExtra("loginDetails4");
 
+//                if(findViewById(R.id.fragment_container) == null) {
+//
+//                    intent2.putExtra("quizNameQR", name);
+//                    intent2.putExtra("quizResultScore", String.valueOf(value));
+//                    intent2.putExtra("class", "true");
+//                    intent2.putExtra("checker", "true1");
+//                    intent2.putExtra(LoginActivity.KEY_LOGIN_TO_MAIN, login);
+//
+//                    startActivity(intent2);
+//                }
+
                 Bundle arguments = new Bundle();
                 DashboardFragment fragment = new DashboardFragment();
                 fragment.setArguments(arguments);
@@ -69,13 +80,6 @@ public class QuizResultActivity extends AppCompatActivity {
                 arguments.putString(LoginActivity.KEY_LOGIN_TO_MAIN, login);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new DashboardFragment()).commit();
-
-//                intent2.putExtra("quizNameQR", name);
-//                intent2.putExtra("quizResultScore", String.valueOf(value));
-//                intent2.putExtra("class", "true");
-//                intent2.putExtra(LoginActivity.KEY_LOGIN_TO_MAIN, login);
-
-//                startActivity(intent2);
 
             }
         });

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuizDescriptionActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="409dp"
+        android:layout_height="216dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="2dp"
+        android:background="#6669CDBB"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageFromDB"
+                android:layout_width="115dp"
+                android:layout_height="101dp"
+                android:layout_marginStart="147dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="147dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_launcher_round" />
+
+            <TextView
+                android:id="@+id/tvQuizName"
+                android:layout_width="318dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="110dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Vegetables"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageFromDB" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/quiz_description_text"
+        android:layout_width="342dp"
+        android:layout_height="193dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/roboto"
+        android:text="Quiz Description Goes Here"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bestScore" />
+
+    <Button
+        android:id="@+id/StartQuiz"
+        android:layout_width="337dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/rounded_corners_button"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Start Quiz"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_description_text" />
+
+    <ImageView
+        android:id="@+id/ivSearch"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@android:drawable/ic_search_category_default" />
+
+    <RatingBar
+        android:id="@+id/bestScore"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="81dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="About this quiz:"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
