@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Intent intent = getIntent();
+        String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 Intent intent = getIntent();
@@ -79,7 +81,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
                 break;
             case R.id.nav_leaderboard:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LeaderboardFragment()).commit();
+                LeaderboardFragment fragment = new LeaderboardFragment();
+                Bundle arguments = new Bundle();
+                arguments.putString("checker", "true1" );
+                fragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
                 break;
             case R.id.nav_quiz:
                 Bundle argumentsQuiz = new Bundle();
@@ -91,7 +97,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentQuiz).commit();
                 break;
             case R.id.nav_learnings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LearningsFragment()).commit();
+                LearningsFragment fragment1 = new LearningsFragment();
+                Bundle arguments2 = new Bundle();
+                arguments2.putString("checker", "true1" );
+                fragment1.setArguments(arguments2);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment1).commit();
                 break;
 //            case R.id.nav_calorie:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
