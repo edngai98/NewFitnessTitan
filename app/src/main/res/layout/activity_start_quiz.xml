@@ -18,8 +18,8 @@
 
             <TextView
                 android:id="@+id/in_quiz_name"
-                android:layout_width="203dp"
-                android:layout_height="64dp"
+                android:layout_width="367dp"
+                android:layout_height="61dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/roboto_bold"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -17,13 +18,16 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="177dp"
+        tools:layout_editor_absoluteY="1dp">
 
         <ImageView
             android:id="@+id/imageFromDB"
-            android:layout_width="115dp"
-            android:layout_height="101dp"
+            android:layout_width="105dp"
+            android:layout_height="80dp"
             android:layout_marginStart="147dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="147dp"
@@ -34,46 +38,59 @@
 
         <TextView
             android:id="@+id/tvQuizName"
-            android:layout_width="318dp"
-            android:layout_height="49dp"
+            android:layout_width="299dp"
+            android:layout_height="85dp"
             android:layout_marginStart="110dp"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="110dp"
 
+            android:fontFamily="@font/roboto_bold"
             android:text="Vegetables"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="36sp"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageFromDB" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="349dp"
+            android:layout_height="294dp"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuizName">
+
+            <TextView
+                android:id="@+id/quiz_description_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="Quiz Description Goes Here"
+                android:textColor="#000000" />
+        </ScrollView>
+
+        <Button
+            android:id="@+id/StartQuiz"
+            android:layout_width="325dp"
+            android:layout_height="45dp"
+
+            android:layout_marginStart="42dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="52dp"
+            android:background="@drawable/rounded_corners_button"
+            android:text="Test your knowledge!"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/quiz_description_text"
-        android:layout_width="342dp"
-        android:layout_height="193dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="9dp"
-
-        android:text="Quiz Description Goes Here"
-        android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bestScore" />
-
-    <Button
-        android:id="@+id/StartQuiz"
-        android:layout_width="325dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="17dp"
-
-        android:background="@drawable/rounded_corners_button"
-        android:text="Start Quiz"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quiz_description_text" />
 
     <ImageView
         android:id="@+id/ivSearch"
@@ -102,7 +119,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="22dp"
 
-        android:text="About this quiz:"
+        android:text="About this topic: "
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

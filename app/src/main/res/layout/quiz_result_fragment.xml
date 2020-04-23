@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
+        android:paddingTop="10dp"
         android:text="Way to go! "
         android:textColor="@color/colorAccent"
         android:textSize="40dp" />
@@ -34,6 +35,13 @@
         android:text="You have completed this quiz. " />
 
     <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="Correct: " />
+
+    <TextView
         android:id="@+id/tvCorrect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,6 +50,12 @@
         android:paddingBottom="10dp"
         android:textColor="#4CAF50"
         android:textSize="32dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Incorrect:" />
 
     <TextView
         android:id="@+id/tvWrong"
