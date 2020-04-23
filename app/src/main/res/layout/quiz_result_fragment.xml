@@ -23,7 +23,7 @@
         android:fontFamily="@font/roboto_bold"
         android:hint="Quiz Name"
         android:paddingTop="20dp"
-        android:textColor="#000000"
+        android:textColor="#43BFB3"
         android:textSize="28dp" />
 
     <TextView

@@ -1,16 +1,20 @@
 package com.example.newfitnesstitan;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class QuizResultActivity extends AppCompatActivity {
+public class QuizResultFragment extends Fragment {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -20,34 +24,34 @@ public class QuizResultActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_result);
-
-        result = findViewById(R.id.tvCorrect);
-        wrong_answers = findViewById(R.id.tvWrong);
-        quiz_title = findViewById(R.id.quizname);
-
-
     }
 
-
+    @Nullable
     @Override
-    protected void onStart() {
-        super.onStart();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.quiz_result_fragment, container, false);
+        result = rootView.findViewById(R.id.tvCorrect);
+        wrong_answers = rootView.findViewById(R.id.tvWrong);
+        quiz_title = rootView.findViewById(R.id.quizname);
 
-        Intent intent = getIntent();
+        Bundle bundle = getArguments();
+        String correct = bundle.getString("correct");
+        String wrong = bundle.getString("wrong");
+        String title = bundle.getString("title");
 
-        String correct = intent.getStringExtra("correct");
-        String wrong = intent.getStringExtra("wrong");
-        String title = intent.getStringExtra("title");
+
+//        String correct = intent.getStringExtra("correct");
+//        String wrong = intent.getStringExtra("wrong");
+//        String title = intent.getStringExtra("title");
 
         result.setText(correct);
         wrong_answers.setText(wrong);
         quiz_title.setText(title);
 
-        Button update_button = findViewById(R.id.SetQuizResult);
-        Intent intent2 = new Intent(this, MainActivity.class);
+        Button update_button = rootView.findViewById(R.id.SetQuizResult);
+//        Intent intent2 = new Intent(this, MainActivity.class);
 
 
         //Update Quiz
@@ -56,8 +60,13 @@ public class QuizResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int value = Integer.parseInt(correct);
                 String name = quiz_title.getText().toString();
-                Intent intent = getIntent();
-                String login = intent.getStringExtra("loginDetails4");
+
+                Bundle bundle = getArguments();
+                String login = bundle.getString("loginDetails4");
+
+
+//                Intent intent = getIntent();
+//                String login = intent.getStringExtra("loginDetails4");
 
 //                if(findViewById(R.id.fragment_container) == null) {
 //
@@ -77,13 +86,17 @@ public class QuizResultActivity extends AppCompatActivity {
                 arguments.putString("quizResultScore", String.valueOf(value));
                 arguments.putString("class", "true");
                 arguments.putString("checker", "true1");
-                arguments.putString(LoginActivity.KEY_LOGIN_TO_MAIN, login);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new DashboardFragment()).commit();
+                arguments.putString("login", login);
+                System.out.println("this is the QuizResultFragment");
+                System.out.println(login);
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        fragment).commit();
 
             }
         });
 
-
+        return rootView;
     }
+
+
 }

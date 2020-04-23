@@ -57,18 +57,14 @@ public class DashboardFragment extends Fragment {
     private ListenerRegistration registration;
     public Users users;
     String name;
+    String s;
     int a;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        quizzes_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                goToQuizzes();
-//            }
-//        });
+
 
 //        image = findViewById(R.id.editProfile);
     }
@@ -78,8 +74,9 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.home_fragment, container, false);
         Bundle bundle = getArguments();
-        String s = bundle.getString("login");
+        s = bundle.getString("login");
         String temp = bundle.getString("checker");
+        //Intent intent = new Intent(getContext(), QuizListActivity.class);
         if (!temp.equals("true")) {
             tvHelloMate = rootView.findViewById(R.id.textView2);
             quizzes_button = rootView.findViewById(R.id.quote_button);
@@ -92,6 +89,7 @@ public class DashboardFragment extends Fragment {
 
                 }
             });
+
 //            image.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -117,11 +115,12 @@ public class DashboardFragment extends Fragment {
 //    }
 
     private void readData(FirestoreCallback firestoreCallback) {
-        Bundle bundle = this.getArguments();
+        Bundle bundle = getArguments();
         String login = bundle.getString("login");
         String temp = bundle.getString("checker");
         System.out.println(login);
         if (!temp.equals("true")) {
+
             final DocumentReference quizResultRef = db.document("users/" + login);
             registration = quizResultRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override

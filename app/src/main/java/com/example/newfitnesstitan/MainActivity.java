@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
@@ -27,8 +31,11 @@ import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 //import com.bumptech.glide.Glide;
+import com.example.newfitnesstitan.QuizContent.QuizDescriptions;
 import com.example.newfitnesstitan.UserResults.Users;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -46,18 +53,10 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference quizResultRef;
-    private Cartesian cartesian;
-    private AnyChartView anyChartView;
-
-    private TextView tvHelloMate;
-    private TextView testViewData;
-    private ImageView image;
-
-    public Users users;
-    String name;
-    int a;
+    private CollectionReference getQuizDatabase = db.collection("quizzes");
+    public static final String KEY_PATH = "path needed";
     private DrawerLayout drawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
-
-
-
     }
 
     @Override
@@ -106,7 +102,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
+                Intent intent = getIntent();
+                String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
+                String className = intent.getStringExtra("class");
+                Bundle arguments = new Bundle();
+                DashboardFragment fragment = new DashboardFragment();
+                fragment.setArguments(arguments);
+                arguments.putString("login",login);
+                arguments.putString("class", className);
+                arguments.putString("checker", "true1");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
                 break;
             case R.id.nav_leaderboard:
                 LeaderboardFragment fragment = new LeaderboardFragment();
@@ -116,7 +121,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
                 break;
             case R.id.nav_quiz:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new QuizFragment()).commit();
+                Bundle argumentsQuiz = new Bundle();
+                QuizListFragment fragmentQuiz = new QuizListFragment();
+                fragmentQuiz.setArguments(argumentsQuiz);
+                Intent intentQuiz = getIntent();
+                String loginQuiz = intentQuiz.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
+                argumentsQuiz.putString("login",loginQuiz);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentQuiz).commit();
                 break;
             case R.id.nav_learnings:
                 LearningsFragment fragment1 = new LearningsFragment();
@@ -144,133 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
 
-//            Intent intent = getIntent();
-//            String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-//
-//
-//            quizResultRef = db.document("users/" + login);
-//
-//            Intent i = new Intent(this, EditProfileActivity.class);
-//
-//            anyChartView = findViewById(R.id.any_chart_view);
-//            anyChartView.setProgressBar(findViewById(R.id.progress_bar));
-//            cartesian = AnyChart.column();
-
-//            readData(new FirestoreCallback() {
-//                @Override
-//                public void onCallback(List<DataEntry> list) {
-//                    list.toString();
-//                }
-//            });
-//
-//            image.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = getIntent();
-//                    String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-//                    i.putExtra("editProfile", login);
-//                    startActivity(i);
-//                }
-//            });
-
-
-//        }
-
-    public void goToQuizzes() {
-        Intent intent = getIntent();
-        String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-        Intent i = new Intent(this, QuizListActivity.class);
-        i.putExtra("loginDetails", login);
-        startActivity(i);
-    }
-
-//    private void readData(FirestoreCallback firestoreCallback) {
-//        quizResultRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-//                if (e != null) {
-//                    return;
-//                }
-//                Intent intent = getIntent();
-//                String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-//                List<DataEntry> data = new ArrayList<>();
-//                if (documentSnapshot.exists()) {
-//                    users = documentSnapshot.toObject(Users.class);
-//                    System.out.println(users.getFirst());
-//                    String className = getIntent().getStringExtra("class");
-//                    tvHelloMate.setText("Hello " + users.getFirst() +",");
-//                    if(className.equals("true")) {
-//
-//                        for(Map.Entry<String, Integer> q : users.getQuizResults().entrySet()) {
-//
-//                            if(q.getKey().equals(getIntent().getStringExtra("quizNameQR"))) {
-//
-//                                name = getIntent().getStringExtra("quizNameQR");
-//                                a = Integer.parseInt(Objects.requireNonNull(getIntent().getStringExtra("quizResultScore")));
-//
-//                                if(q.getValue() == a){
-//                                    return;
-//                                } else {
-//                                    q.setValue(a);
-//                                    db.collection("users").document(login).update("quizResults." + name, a);
-//                                }
-//
-//                            }
-//                        }
-//
-//                    }
-//
-//                    for (Map.Entry<String, Integer> q : users.getQuizResults().entrySet()) {
-//                        String quiz_name = q.getKey();
-//                        int quiz_result = q.getValue();
-//                        data.add(new ValueDataEntry(quiz_name, quiz_result));
-//                    }
-//                    Column column = cartesian.column(data);
-//
-//                    column.tooltip()
-//                            .titleFormat("{%X}")
-//                            .position(Position.CENTER_BOTTOM)
-//                            .anchor(Anchor.CENTER_BOTTOM)
-//                            .offsetX(0)
-//                            .offsetY(5)
-//                            .format("{%Value}{groupsSeparator: }");
-//
-//                    column.fill("red");
-//                    column.stroke("green");
-//
-////                        column.fill("function() {" +
-////                                "if (this.value > 5) return 'red';\n" +
-////                                "return 'green';}");
-//
-//                    //cartesian.animation(true);
-//                    cartesian.title("My Progress");
-//
-//                    //cartesian.yScale().minimum(0);
-//                    cartesian.yScale().maximum(5);
-//
-//                    //cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
-//
-//                    cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
-//                    cartesian.interactivity().hoverMode(HoverMode.BY_X);
-//
-//                    //cartesian.xAxis(0).title("Product");
-//                    //cartesian.yAxis(0).title("Revenue");
-//
-//                    anyChartView.setChart(cartesian);
-//
-//                }
-//            }
-//        });
-//
-//    }
-//
-//    private interface FirestoreCallback {
-//        void onCallback(List<DataEntry> list);
-//    }
 
 
 
