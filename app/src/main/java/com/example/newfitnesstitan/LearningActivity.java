@@ -51,6 +51,9 @@ public class LearningActivity extends AppCompatActivity {
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
 
                 String path = documentSnapshot.getReference().getPath();
+                Bundle bundle = new Bundle();
+                bundle.putString("learning", path);
+
                 intent.putExtra("learning", path);
                 startActivity(intent);
 

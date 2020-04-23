@@ -29,8 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".QuizListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".QuizListActivity">
         </activity>
         <activity
             android:name=".QuizDescriptionActivity"

@@ -1,6 +1,7 @@
 package com.example.newfitnesstitan;
 
 import java.util.HashMap;
+//Renamed to users later
 
 public class People {
     String first;
