@@ -102,8 +102,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
-                Intent intent = getIntent();
-                String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
                 String className = intent.getStringExtra("class");
                 Bundle arguments = new Bundle();
                 DashboardFragment fragment = new DashboardFragment();
@@ -114,11 +112,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
                 break;
             case R.id.nav_leaderboard:
-                LeaderboardFragment fragment = new LeaderboardFragment();
-                Bundle arguments = new Bundle();
-                arguments.putString("checker", "true1" );
-                fragment.setArguments(arguments);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                LeaderboardFragment fragmentLeader = new LeaderboardFragment();
+                Bundle argumentsLeader = new Bundle();
+                argumentsLeader.putString("checker", "true1" );
+                fragmentLeader.setArguments(argumentsLeader);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentLeader).commit();
                 break;
             case R.id.nav_quiz:
                 Bundle argumentsQuiz = new Bundle();
