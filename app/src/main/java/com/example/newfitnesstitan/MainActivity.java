@@ -41,6 +41,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 //import com.anychart.sample.R;
@@ -53,9 +54,11 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference getQuizDatabase = db.collection("quizzes");
+
     public static final String KEY_PATH = "path needed";
     private DrawerLayout drawerLayout;
+    private TextView name;
+    private ListenerRegistration registration;
 
 
     @Override
@@ -70,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -78,6 +83,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = getIntent();
         String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
         String className = intent.getStringExtra("class");
+
+        DocumentReference user = db.document("users/" + login);
+
+        user.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    return;
+                }
+
+                if(documentSnapshot.exists()) {
+                    Users users = documentSnapshot.toObject(Users.class);
+                    name = findViewById(R.id.nav_name);
+                    name.setText(users.getFirst() + " " + users.getLast());
+                }
+            }
+        });
 
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
@@ -152,10 +174,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-
-
-
-
 
 
 }
