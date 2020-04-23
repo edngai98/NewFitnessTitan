@@ -100,13 +100,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
+                Intent intent = getIntent();
+                String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
+                String className = intent.getStringExtra("class");
+                Bundle arguments = new Bundle();
+                DashboardFragment fragment = new DashboardFragment();
+                fragment.setArguments(arguments);
+                arguments.putString("login",login);
+                arguments.putString("class", className);
+                arguments.putString("checker", "true1");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
                 break;
             case R.id.nav_leaderboard:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LeaderboardFragment()).commit();
                 break;
             case R.id.nav_quiz:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new QuizFragment()).commit();
+                Bundle argumentsQuiz = new Bundle();
+                QuizListFragment fragmentQuiz = new QuizListFragment();
+                fragmentQuiz.setArguments(argumentsQuiz);
+                Intent intentQuiz = getIntent();
+                String loginQuiz = intentQuiz.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
+                argumentsQuiz.putString("login",loginQuiz);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentQuiz).commit();
                 break;
             case R.id.nav_learnings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LearningsFragment()).commit();

@@ -54,15 +54,25 @@ public class QuizListFragment extends Fragment {
         adapter.setOnItemClickListener(new QuizAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+
+//                String path = documentSnapshot.getReference().getPath();
+//                Intent i = getIntent();
+//                String login = i.getStringExtra("loginDetails");
+//
+//                Toast.makeText(QuizListActivity.this, "", Toast.LENGTH_SHORT).show();
+//                intent.putExtra(KEY_PATH,path);
+//                intent.putExtra("loginDetails2", login);
+//                startActivity(intent);
                 Bundle bundle = getArguments();
-                String login = bundle.getString("login2");
+                String login = bundle.getString("login");
                 String path = documentSnapshot.getReference().getPath();
 
                 Bundle arguments = new Bundle();
-                QuizListFragment fragment = new QuizListFragment();
+                QuizDescriptionFragment fragment = new QuizDescriptionFragment();
                 fragment.setArguments(arguments);
                 arguments.putString(KEY_PATH, path);
-                arguments.putString("login3", login);
+                arguments.putString("loginDetails2", login);
+                System.out.println(login);
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment)
                         .addToBackStack(null)

@@ -89,25 +89,7 @@ public class DashboardFragment extends Fragment {
 
                 }
             });
-            quizzes_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-//                    Bundle arguments = new Bundle();
-//                    QuizListFragment fragment = new QuizListFragment();
-//                    fragment.setArguments(arguments);
-//                    arguments.putString("login2", s);
-//                    getFragmentManager().beginTransaction()
-//                            .replace(R.id.fragment_container, fragment)
-//                            .addToBackStack(null)
-//                            .commit();
-
-                    Intent intent = new Intent(getActivity(), QuizListActivity.class);
-                    intent.putExtra("loginDetails", s);
-                    startActivity(intent);
-
-                }
-            });
 //            image.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -133,7 +115,7 @@ public class DashboardFragment extends Fragment {
 //    }
 
     private void readData(FirestoreCallback firestoreCallback) {
-        Bundle bundle = this.getArguments();
+        Bundle bundle = getArguments();
         String login = bundle.getString("login");
         String temp = bundle.getString("checker");
         System.out.println(login);
