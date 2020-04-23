@@ -42,6 +42,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class DashboardFragment extends Fragment {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -51,6 +57,7 @@ public class DashboardFragment extends Fragment {
 
     private TextView tvHelloMate;
     private TextView testViewData;
+    private TextView funnyJokes;
     private ImageView image;
     private Context context;
     private Button quizzes_button;
@@ -59,6 +66,7 @@ public class DashboardFragment extends Fragment {
     String name;
     String s;
     int a;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,13 +87,32 @@ public class DashboardFragment extends Fragment {
         //Intent intent = new Intent(getContext(), QuizListActivity.class);
         if (!temp.equals("true")) {
             tvHelloMate = rootView.findViewById(R.id.textView2);
-            quizzes_button = rootView.findViewById(R.id.quote_button);
             anyChartView = rootView.findViewById(R.id.any_chart_view);
             anyChartView.setProgressBar(rootView.findViewById(R.id.progress_bar));
             cartesian = AnyChart.column();
+            funnyJokes = rootView.findViewById(R.id.funnyJoke);
             readData(new FirestoreCallback() {
                 @Override
                 public void onCallback(List<DataEntry> list) {
+
+                }
+            });
+            Retrofit retrofit = new Retrofit.Builder().
+                    baseUrl("https://api.spoonacular.com/").
+                    addConverterFactory(GsonConverterFactory.create()).
+                    build();
+
+            JokeAPI quoteapi =retrofit.create(JokeAPI.class);
+            Call<Joke> call = quoteapi.getQuote();
+            call.enqueue(new Callback<Joke>() {
+                @Override
+                public void onResponse(Call<Joke> call, Response<Joke> response) {
+                    String quote = String.valueOf(response.body().getQuote());
+                    funnyJokes.setText(quote);
+                }
+
+                @Override
+                public void onFailure(Call<Joke> call, Throwable t) {
 
                 }
             });
