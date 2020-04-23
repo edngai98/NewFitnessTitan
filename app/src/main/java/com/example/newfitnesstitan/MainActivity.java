@@ -69,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
-                Intent intent = getIntent();
-                String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
                 String className = intent.getStringExtra("class");
                 Bundle arguments = new Bundle();
                 DashboardFragment fragment = new DashboardFragment();
