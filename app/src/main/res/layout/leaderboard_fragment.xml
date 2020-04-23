@@ -133,10 +133,10 @@
         android:layout_marginTop="40dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Leaderboard"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:textColor="#0B0A0A" />
+        tools:textColor="#000000" />
 
     <TextView
         android:id="@+id/textView21"
