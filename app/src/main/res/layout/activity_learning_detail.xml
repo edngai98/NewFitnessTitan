@@ -42,7 +42,8 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="110dp"
 
-                android:text="Vegetables"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Module Name"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textSize="36sp"
@@ -60,7 +61,8 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="9dp"
 
-        android:text="Quiz Description Goes Here"
+        android:fontFamily="@font/roboto"
+        android:text="Learning module here"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bestScore" />
@@ -73,7 +75,8 @@
         android:layout_marginTop="60dp"
 
         android:background="@drawable/rounded_corners_button"
-        android:text="Start Quiz"
+        android:fontFamily="@font/roboto"
+        android:text="Test your knowledge!"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,10 +109,12 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="22dp"
 
-        android:text="About this quiz:"
+        android:fontFamily="@font/roboto"
+        android:text="About this module:"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:textStyle="bold" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
