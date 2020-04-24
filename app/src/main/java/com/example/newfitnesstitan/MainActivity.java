@@ -156,9 +156,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment1.setArguments(arguments2);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment1).commit();
                 break;
-//            case R.id.nav_calorie:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).commit();
-//                break;
+            case R.id.nav_calorie:
+                CalorieFragment calorieFragment = new CalorieFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, calorieFragment).commit();
+                break;
 
         }
 

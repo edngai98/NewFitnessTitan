@@ -41,25 +41,19 @@
             android:textColor="#000000"
             android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/heart"
-            android:layout_width="78dp"
-            android:layout_height="68dp"
-            android:layout_marginStart="300dp"
 
-            tools:srcCompat="@drawable/heartbeat">
 
-        </ImageView>
-
-        <Button
-            android:id="@+id/quote_button"
-            android:layout_width="134dp"
+        <TextView
+            android:id="@+id/funnyJoke"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="90dp"
-            android:background="@drawable/rounded_corners_button"
-            android:text="Get Started"
-            android:textColor="#FFFFFF" />
+            android:layout_below="@+id/quote"
+            android:layout_marginTop="10dp"
+            android:padding="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="10dp"
+            android:text="TextView" />
+
     </RelativeLayout>
 
     <TextView
