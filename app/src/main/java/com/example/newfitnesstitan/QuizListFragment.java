@@ -62,14 +62,6 @@ public class QuizListFragment extends Fragment {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
 
-//                String path = documentSnapshot.getReference().getPath();
-//                Intent i = getIntent();
-//                String login = i.getStringExtra("loginDetails");
-//
-//                Toast.makeText(QuizListActivity.this, "", Toast.LENGTH_SHORT).show();
-//                intent.putExtra(KEY_PATH,path);
-//                intent.putExtra("loginDetails2", login);
-//                startActivity(intent);
                 Bundle bundle = getArguments();
                 String login = bundle.getString("login");
                 String path = documentSnapshot.getReference().getPath();

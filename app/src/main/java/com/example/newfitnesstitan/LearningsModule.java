@@ -4,12 +4,14 @@ public class LearningsModule {
     private String description;
     private String name;
     private String summary;
+    private String image;
 
 
-    public LearningsModule(String description, String name, String summary) {
+    public LearningsModule(String description, String name, String summary, String image) {
         this.description = description;
         this.name = name;
         this.summary = summary;
+        this.image = image;
     }
     public LearningsModule(){
 
@@ -38,5 +40,13 @@ public class LearningsModule {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

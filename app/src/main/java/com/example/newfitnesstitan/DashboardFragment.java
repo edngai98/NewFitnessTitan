@@ -118,29 +118,10 @@ public class DashboardFragment extends Fragment {
                 }
             });
 
-//            image.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = getIntent();
-//                    String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-//                    i.putExtra("editProfile", login);
-//                    startActivity(i);
-//                }
-//            });
-
         }
         return rootView;
     }
 
-
-
-//    public void goToQuizzes() {
-//        Intent intent = getIntent();
-//        String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-//        Intent i = new Intent(this, QuizListActivity.class);
-//        i.putExtra("loginDetails", login);
-//        startActivity(i);
-//    }
 
     private void readData(FirestoreCallback firestoreCallback) {
         Bundle bundle = getArguments();
@@ -156,8 +137,6 @@ public class DashboardFragment extends Fragment {
                     if (e != null) {
                         return;
                     }
-//                Intent intent = getIntent();
-//                String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
 
                     Bundle bundle = getArguments();
                     String login = bundle.getString("login");
@@ -229,9 +208,6 @@ public class DashboardFragment extends Fragment {
                         //cartesian.yScale().minimum(0);
                         cartesian.yScale().maximum(5);
                         cartesian.yScale().ticks().allowFractional(false);
-
-
-                        //cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
 
                         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
                         cartesian.interactivity().hoverMode(HoverMode.BY_X);

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -59,14 +60,14 @@ public class LearningDetailFragment extends Fragment {
 
                 if (documentSnapshot.exists()) {
                     LearningsModule learningDescription = documentSnapshot.toObject(LearningsModule.class);
-                    String quiz_name = learningDescription.getName();
-                    String quiz_description = learningDescription.getDescription();
-                    name.setText(quiz_name);
-                    description.setText(quiz_description);
-
-//                    Glide.with(LearningDetail.this)
-//                            .load(FirebaseStorage.getInstance().getReferenceFromUrl(a))
-//                            .into(image);
+                    String learnings_name = learningDescription.getName();
+                    String learnings_description = learningDescription.getDescription();
+                    String a = learningDescription.getImage();
+                    name.setText(learnings_name);
+                    description.setText(learnings_description);
+                    Glide.with(getActivity())
+                            .load(FirebaseStorage.getInstance().getReferenceFromUrl(a))
+                            .into(image);
 
 
                 }
