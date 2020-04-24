@@ -11,16 +11,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
+        android:layout_marginStart="81dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="91dp"
+        android:layout_marginEnd="82dp"
         android:fontFamily="@font/roboto"
         android:text="Nutrition Titan"
         android:textColor="#000000"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageFromDB" />
 

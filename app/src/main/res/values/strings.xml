@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Nutrition Titan</string>
     <string name="create_account"><u>Dont have an account? Create one here</u></string>
+    <string name="first_name"><u>First Name:</u></string>
+    <string name="last_name"><u>Last Name:</u></string>
+    <string name="user_name"><u>Username:</u></string>
+    <string name="password"><u>Password:</u></string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

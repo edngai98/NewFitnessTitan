@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfileActivity">
+
+    <ImageView
+        android:id="@+id/imageFromDB"
+        android:layout_width="148dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="132dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="80dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Edit your profile details"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageFromDB" />
+
+    <EditText
+        android:id="@+id/etUserEdit"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="75dp"
+        android:background="@drawable/searchbar_rounded"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etLastEdit" />
+
+    <EditText
+        android:id="@+id/etPassEdit"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="75dp"
+        android:background="@drawable/searchbar_rounded"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUserEdit" />
+
+    <EditText
+        android:id="@+id/etLastEdit"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="75dp"
+        android:background="@drawable/searchbar_rounded"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Last Name"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFirstEdit" />
+
+    <EditText
+        android:id="@+id/etFirstEdit"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="75dp"
+        android:background="@drawable/searchbar_rounded"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="First Name"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/FirstUnder"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/btnSaveAcc"
+        android:layout_width="262dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="75dp"
+        android:background="@drawable/rounded_corners_button"
+        android:fontFamily="@font/roboto"
+        android:text="Save Changes"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassEdit" />
+
+    <TextView
+        android:id="@+id/FirstUnder"
+        android:layout_width="95dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="46dp"
+        android:text="@string/first_name"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/PasswordUnder"
+        android:layout_width="92dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="51dp"
+        android:text="@string/password"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserUnder" />
+
+    <TextView
+        android:id="@+id/UserUnder"
+        android:layout_width="91dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="51dp"
+        android:text="@string/user_name"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LastNameUnder" />
+
+    <TextView
+        android:id="@+id/LastNameUnder"
+        android:layout_width="94dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="51dp"
+        android:text="@string/last_name"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FirstUnder" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
