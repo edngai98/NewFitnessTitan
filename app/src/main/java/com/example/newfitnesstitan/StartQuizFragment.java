@@ -119,7 +119,7 @@ public class StartQuizFragment extends Fragment {
                                         correct++;
 
                                         //change colours here
-                                        b1.setBackgroundColor(Color.parseColor("#32CD32"));
+                                        b1.setTextColor(Color.parseColor("#32CD32"));
 
                                         total++;
                                         loadQuestion();

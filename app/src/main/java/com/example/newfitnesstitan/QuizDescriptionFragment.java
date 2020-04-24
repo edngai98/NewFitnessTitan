@@ -2,6 +2,8 @@ package com.example.newfitnesstitan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ public class QuizDescriptionFragment extends Fragment {
     private ImageView image;
     private Context context;
     private Button button;
+    private ImageView searchButton;
     private ListenerRegistration registration;
     private ListenerRegistration registration2;
 
@@ -58,6 +61,7 @@ public class QuizDescriptionFragment extends Fragment {
         image = rootView.findViewById(R.id.imageFromDB);
         button = rootView.findViewById(R.id.StartQuiz);
         RatingBar ratingBar = rootView.findViewById(R.id.bestScore);
+        searchButton = rootView.findViewById(R.id.ivSearch);
 
 //        Intent intent = getIntent();
 //        String path = intent.getStringExtra(QuizListActivity.KEY_PATH);
@@ -151,7 +155,15 @@ public class QuizDescriptionFragment extends Fragment {
             }
         });
 
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchQuiz(name.getText().toString());
+            }
+        });
+
         return rootView;
+
     }
 
     @Override
@@ -159,5 +171,10 @@ public class QuizDescriptionFragment extends Fragment {
         super.onStop();
         registration.remove();
         registration2.remove();
+    }
+
+    private void searchQuiz(String name) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + name));
+        startActivity(intent);
     }
 }

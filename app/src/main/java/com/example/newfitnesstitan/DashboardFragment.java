@@ -204,15 +204,18 @@ public class DashboardFragment extends Fragment {
                                 .offsetY(5)
                                 .format("{%Value}{groupsSeparator: }");
 
-                        column.fill("red");
-                        column.stroke("green");
+                        column.stroke("function() {" +
+                                "if (this.value >= 0 && this.value <=2) {return 'red';}\n" +
+                                "else if (this.value < 5 && this.value >= 3) {return 'orange';}\n" +
+                                "else {return 'green'};}");
 
-//                        column.fill("function() {" +
-//                                "if (this.value > 5) return 'red';\n" +
-//                                "return 'green';}");
+                        column.fill("function() {" +
+                                "if (this.value >= 0 && this.value <=2) {return 'red';}\n" +
+                                "else if (this.value < 5 && this.value >= 3) {return 'orange';}\n" +
+                                "else {return 'green'};}");
 
                         //cartesian.animation(true);
-                        cartesian.title("My Progress");
+                        //cartesian.title("My Progress");
 
                         //cartesian.yScale().minimum(0);
                         cartesian.yScale().maximum(5);
