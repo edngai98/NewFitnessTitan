@@ -36,11 +36,9 @@ public class QuizDescriptionFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public static final String KEY_START_QUIZ_PATH = "start quiz";
-    private StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://fitnesstitan-5ed50.appspot.com/api.png");
 
     private TextView name, description;
     private ImageView image;
-    private Context context;
     private Button button;
     private ImageView searchButton;
     private ListenerRegistration registration;
@@ -63,16 +61,10 @@ public class QuizDescriptionFragment extends Fragment {
         RatingBar ratingBar = rootView.findViewById(R.id.bestScore);
         searchButton = rootView.findViewById(R.id.ivSearch);
 
-//        Intent intent = getIntent();
-//        String path = intent.getStringExtra(QuizListActivity.KEY_PATH);
-//        System.out.println(path);
-
         Bundle bundle = getArguments();
         String path = bundle.getString(QuizListFragment.KEY_PATH);
 
         DocumentReference getSpecificQuiz = db.document(path);
-
-//        Intent intent2 = new Intent(this, StartQuizActivity.class);
 
         registration = getSpecificQuiz.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -116,14 +108,6 @@ public class QuizDescriptionFragment extends Fragment {
                                     .replace(R.id.fragment_container, fragment)
                                     .addToBackStack(null)
                                     .commit();
-//                            Intent i = getIntent();
-//                            String login = i.getStringExtra("loginDetails2");
-
-//                            intent2.putExtra(KEY_START_QUIZ_PATH, path2);
-//                            intent2.putExtra("quiz_name_key", quiz_name);
-//                            intent2.putExtra("loginDetails3", login);
-//
-//                            startActivity(intent2);
 
                         }
                     });

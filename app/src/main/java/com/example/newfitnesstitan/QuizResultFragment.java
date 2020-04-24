@@ -41,18 +41,11 @@ public class QuizResultFragment extends Fragment {
         String wrong = bundle.getString("wrong");
         String title = bundle.getString("title");
 
-
-//        String correct = intent.getStringExtra("correct");
-//        String wrong = intent.getStringExtra("wrong");
-//        String title = intent.getStringExtra("title");
-
         result.setText(correct);
         wrong_answers.setText(wrong);
         quiz_title.setText(title);
 
         Button update_button = rootView.findViewById(R.id.SetQuizResult);
-//        Intent intent2 = new Intent(this, MainActivity.class);
-
 
         //Update Quiz
         update_button.setOnClickListener(new View.OnClickListener() {
@@ -63,21 +56,6 @@ public class QuizResultFragment extends Fragment {
 
                 Bundle bundle = getArguments();
                 String login = bundle.getString("loginDetails4");
-
-
-//                Intent intent = getIntent();
-//                String login = intent.getStringExtra("loginDetails4");
-
-//                if(findViewById(R.id.fragment_container) == null) {
-//
-//                    intent2.putExtra("quizNameQR", name);
-//                    intent2.putExtra("quizResultScore", String.valueOf(value));
-//                    intent2.putExtra("class", "true");
-//                    intent2.putExtra("checker", "true1");
-//                    intent2.putExtra(LoginActivity.KEY_LOGIN_TO_MAIN, login);
-//
-//                    startActivity(intent2);
-//                }
 
                 Bundle arguments = new Bundle();
                 DashboardFragment fragment = new DashboardFragment();

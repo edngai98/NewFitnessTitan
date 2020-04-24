@@ -1,9 +1,13 @@
 package com.example.newfitnesstitan;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,6 +22,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class QuizListFragment extends Fragment {
 
@@ -26,6 +31,8 @@ public class QuizListFragment extends Fragment {
     public static final String KEY_PATH = "path needed";
     private QuizAdapter adapter;
     private DrawerLayout drawerLayout;
+    private EditText searchView;
+    String data;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +43,7 @@ public class QuizListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.quizlist_fragment, container, false);
+
 
         FirestoreRecyclerOptions<QuizDescriptions> options = new FirestoreRecyclerOptions.Builder<QuizDescriptions>()
                 .setQuery(getQuizDatabase, QuizDescriptions.class)
@@ -54,14 +62,6 @@ public class QuizListFragment extends Fragment {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
 
-//                String path = documentSnapshot.getReference().getPath();
-//                Intent i = getIntent();
-//                String login = i.getStringExtra("loginDetails");
-//
-//                Toast.makeText(QuizListActivity.this, "", Toast.LENGTH_SHORT).show();
-//                intent.putExtra(KEY_PATH,path);
-//                intent.putExtra("loginDetails2", login);
-//                startActivity(intent);
                 Bundle bundle = getArguments();
                 String login = bundle.getString("login");
                 String path = documentSnapshot.getReference().getPath();
@@ -81,6 +81,7 @@ public class QuizListFragment extends Fragment {
 
             }
         });
+
         return rootView;
     }
 
