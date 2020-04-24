@@ -25,7 +25,7 @@
                 android:layout_width="109dp"
                 android:layout_height="86dp"
                 android:layout_marginStart="147dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="147dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="71dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="72dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Nutrition Calculator"
@@ -51,181 +51,162 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="371dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="19dp"
-        android:fontFamily="@font/roboto"
-        android:text="A balanced diet that covers all key food groups is key to ensuring your body receives the nutrition it needs for a healthy body and mind.  "
-        app:layout_constraintEnd_toEndOf="parent"
+    <EditText
+        android:id="@+id/Ingredient"
+        android:layout_width="351dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="224dp"
+        android:ems="10"
+        android:hint="Ingredient"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:textSize="16sp" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
+    <EditText
+        android:id="@+id/serving"
+        android:layout_width="352dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Serving Amount"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Ingredient" />
+
+    <Button
+        android:id="@+id/StartQuiz"
+        android:layout_width="324dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_corners_button"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Generate"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serving" />
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="370dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="19dp"
-        android:fontFamily="@font/roboto"
-        android:text="Search for a food to learn more abouts its nutritional breakdown!"
+        android:id="@+id/calories"
+        android:layout_width="130dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:text="KCal"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        tools:textSize="16sp" />
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
+
+    <TextView
+        android:id="@+id/fiber"
+        android:layout_width="130dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="36dp"
+        android:text="Grams"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Calories"
         android:textColor="#090808"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serving"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
+        tools:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/sugar"
+        android:layout_width="130dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="36dp"
+        android:text="Grams"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
+
+    <TextView
+        android:id="@+id/fats"
+        android:layout_width="130dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="36dp"
+        android:text="Grams"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="188dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Fats"
+        android:textColor="#090808"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
+        tools:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/carbohydrates"
+        android:layout_width="130dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="36dp"
+        android:text="Grams"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="148dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Carbohydrates"
+        android:textColor="#090808"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
         tools:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="104dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Fiber"
         android:textColor="#090808"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        tools:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Carbohydrates"
-        android:textColor="#090808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
-        tools:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Fats"
-        android:textColor="#090808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
         tools:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Sugars"
         android:textColor="#090808"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
         tools:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/Ingredient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Ingredient"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <EditText
-        android:id="@+id/serving"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="servingAmount"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Ingredient" />
-
-    <TextView
-        android:id="@+id/calories"
-        android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="60dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serving" />
-
-    <TextView
-        android:id="@+id/sugar"
-        android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="60dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calories" />
-
-    <TextView
-        android:id="@+id/fiber"
-        android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="60dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sugar" />
-
-    <TextView
-        android:id="@+id/carbohydrates"
-        android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="60dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fiber" />
-
-    <TextView
-        android:id="@+id/fats"
-        android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="60dp"
-        android:text="fats"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carbohydrates" />
-
-    <Button
-        android:id="@+id/generateResponse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="52dp"
-        android:text="Generate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
