@@ -21,6 +21,10 @@
             android:id="@+id/nav_calorie"
             android:icon="@drawable/banana"
             android:title="Calorie Counter" />
+        <item
+            android:id="@+id/nav_edit"
+            android:icon="@drawable/ic_account"
+            android:title="My Profile" />
 
     </group>
 

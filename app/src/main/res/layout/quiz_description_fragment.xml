@@ -58,7 +58,7 @@
         android:layout_width="342dp"
         android:layout_height="193dp"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/roboto"
         android:text="Quiz Description Goes Here"
         android:textColor="#000000"
@@ -94,9 +94,8 @@
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="81dp"
         android:layout_height="22dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="9dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="7dp"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
@@ -111,5 +110,16 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="88dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="6dp"
+        android:text="Best Score:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
