@@ -81,23 +81,28 @@ public class EditProfileFragment extends Fragment {
                 String last = user_last_name.getText().toString();
                 String username = user_id.getText().toString();
                 String userPass = user_password.getText().toString();
-                Users users = new Users(username, userPass, first, last);
-                if(!username.isEmpty() && !userPass.isEmpty() && !first.isEmpty() && last.isEmpty()) {
+                if(!username.isEmpty() && !userPass.isEmpty() && !first.isEmpty() && !last.isEmpty()) {
+                    mBuilder.setView(mView);
+                    AlertDialog dialog = mBuilder.create();
+                    dialog.show();
                     mSave.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            doc.set(users);
+                            doc.update(
+                                    "first", first,
+                                    "last", last,
+                                    "username", username,
+                                    "password", userPass
+
+                            );
+                            Toast.makeText(getActivity(), "Saved Changes", Toast.LENGTH_SHORT).show();
+                            dialog.hide();
                         }
                     });
 
-                    Toast.makeText(getActivity(), "Saved Changes", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), "Please fill out all fields", Toast.LENGTH_SHORT).show();
                 }
-
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
 
             }
         });
