@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/imageFromDB"
+        android:layout_width="109dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="147dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/kcal" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="409dp"
+        android:layout_height="216dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="2dp"
+        android:background="#6669CDBB"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvQuizName"
+                android:layout_width="337dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="144dp"
+                android:layout_marginEnd="110dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Nutrition Calculator"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/quiz_description_text"
+        android:layout_width="334dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto"
+        android:text="Search for a food to learn more abouts its nutritional breakdown!"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/StartQuiz"
+        android:layout_width="337dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/rounded_corners_button"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Let's go"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_description_text" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="334dp"
+        android:layout_height="114dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="92dp"
+        android:fontFamily="@font/roboto"
+        android:text="A balanced diet that covers all key food groups is key to ensuring your body receives the nutrition it needs for a healthy body and mind.  "
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
