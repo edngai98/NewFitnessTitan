@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.newfitnesstitan.QuizContent.QuizDescriptions;
+import com.example.newfitnesstitan.UserResults.Users;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -24,6 +26,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.Map;
 
 public class QuizDescriptionFragment extends Fragment {
 
@@ -37,6 +41,7 @@ public class QuizDescriptionFragment extends Fragment {
     private Context context;
     private Button button;
     private ListenerRegistration registration;
+    private ListenerRegistration registration2;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class QuizDescriptionFragment extends Fragment {
         description = rootView.findViewById(R.id.quiz_description_text);
         image = rootView.findViewById(R.id.imageFromDB);
         button = rootView.findViewById(R.id.StartQuiz);
+        RatingBar ratingBar = rootView.findViewById(R.id.bestScore);
 
 //        Intent intent = getIntent();
 //        String path = intent.getStringExtra(QuizListActivity.KEY_PATH);
@@ -122,6 +128,29 @@ public class QuizDescriptionFragment extends Fragment {
             }
         });
 
+        String login = bundle.getString("loginDetails2");
+        DocumentReference userScore = db.document("users/" + login);
+
+        registration2 = userScore.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if(e != null) {
+                    return;
+                }
+
+                if(documentSnapshot.exists()) {
+                    Users users = documentSnapshot.toObject(Users.class);
+                    System.out.println("Before Loop");
+                    for (Map.Entry<String, Integer> q : users.getQuizResults().entrySet()) {
+
+                        if(q.getKey().equals(name.getText().toString())) {
+                            ratingBar.setRating(q.getValue());
+                        }
+                    }
+                }
+            }
+        });
+
         return rootView;
     }
 
@@ -129,5 +158,6 @@ public class QuizDescriptionFragment extends Fragment {
     public void onStop() {
         super.onStop();
         registration.remove();
+        registration2.remove();
     }
 }

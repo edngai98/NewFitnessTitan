@@ -98,10 +98,10 @@ public class StartQuizFragment extends Fragment {
                     b3.setText(quizQuestions.getOption3());
                     b4.setText(quizQuestions.getOption4());
 
-                    b1.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b2.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b3.setBackgroundColor(Color.parseColor("#03A9f4"));
-                    b4.setBackgroundColor(Color.parseColor("#03A9f4"));
+                    b1.setTextColor(Color.parseColor("#000000"));
+                    b2.setTextColor(Color.parseColor("#000000"));
+                    b3.setTextColor(Color.parseColor("#000000"));
+                    b4.setTextColor(Color.parseColor("#000000"));
 
                     b1.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -111,7 +111,7 @@ public class StartQuizFragment extends Fragment {
                             if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
 
                                 //change colours here
-                                b1.setBackgroundColor(Color.GREEN);
+                                b1.setTextColor(Color.parseColor("#32CD32"));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
@@ -119,7 +119,7 @@ public class StartQuizFragment extends Fragment {
                                         correct++;
 
                                         //change colours here
-                                        b1.setBackgroundColor(Color.parseColor("#03A9f4"));
+                                        b1.setBackgroundColor(Color.parseColor("#32CD32"));
 
                                         total++;
                                         loadQuestion();
@@ -132,18 +132,18 @@ public class StartQuizFragment extends Fragment {
                             else {
 
                                 wrong++;
-                                b1.setBackgroundColor(Color.RED);
+                                b1.setTextColor(Color.RED);
 
                                 if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
+                                    b2.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
+                                    b3.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
+                                    b4.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 Handler handler = new Handler();
@@ -167,7 +167,7 @@ public class StartQuizFragment extends Fragment {
                             if (b2.getText().toString().equals(quizQuestions.getAnswer())) {
 
                                 //change colours here
-                                b2.setBackgroundColor(Color.GREEN);
+                                b2.setTextColor(Color.parseColor("#32CD32"));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
@@ -175,7 +175,7 @@ public class StartQuizFragment extends Fragment {
                                         correct++;
 
                                         //change colours here
-                                        b2.setBackgroundColor(Color.parseColor("#03A9f4"));
+                                        b2.setTextColor(Color.parseColor("#32CD32"));
 
                                         total++;
                                         loadQuestion();
@@ -187,14 +187,14 @@ public class StartQuizFragment extends Fragment {
                             else {
 
                                 wrong++;
-                                b2.setBackgroundColor(Color.RED);
+                                b2.setTextColor(Color.RED);
 
                                 if (b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
+                                    b1.setTextColor(Color.parseColor("#32CD32"));
                                 } else if (b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
+                                    b3.setTextColor(Color.parseColor("#32CD32"));
                                 } else if (b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
+                                    b4.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 Handler handler = new Handler();
@@ -218,7 +218,7 @@ public class StartQuizFragment extends Fragment {
                             if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
 
                                 //change colours here
-                                b3.setBackgroundColor(Color.GREEN);
+                                b3.setTextColor(Color.parseColor("#32CD32"));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
@@ -226,7 +226,7 @@ public class StartQuizFragment extends Fragment {
                                         correct++;
 
                                         //change colours here
-                                        b3.setBackgroundColor(Color.parseColor("#03A9f4"));
+                                        b3.setTextColor(Color.parseColor("#32CD32"));
 
                                         total++;
                                         loadQuestion();
@@ -238,18 +238,18 @@ public class StartQuizFragment extends Fragment {
                             else {
 
                                 wrong++;
-                                b3.setBackgroundColor(Color.RED);
+                                b3.setTextColor(Color.RED);
 
                                 if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
+                                    b1.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 else if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
+                                    b2.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 else if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b4.setBackgroundColor(Color.GREEN);
+                                    b4.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
 
@@ -274,7 +274,7 @@ public class StartQuizFragment extends Fragment {
                             if(b4.getText().toString().equals(quizQuestions.getAnswer())) {
 
                                 //change colours here
-                                b4.setBackgroundColor(Color.GREEN);
+                                b4.setTextColor(Color.parseColor("#32CD32"));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
@@ -282,7 +282,7 @@ public class StartQuizFragment extends Fragment {
                                         correct++;
 
                                         //change colours here
-                                        b4.setBackgroundColor(Color.parseColor("#03A9f4"));
+                                        b4.setTextColor(Color.parseColor("#32CD32"));
 
                                         total++;
                                         loadQuestion();
@@ -294,18 +294,18 @@ public class StartQuizFragment extends Fragment {
                             else {
 
                                 wrong++;
-                                b4.setBackgroundColor(Color.RED);
+                                b4.setTextColor(Color.RED);
 
                                 if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b2.setBackgroundColor(Color.GREEN);
+                                    b2.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 else if(b3.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b3.setBackgroundColor(Color.GREEN);
+                                    b3.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 else if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
-                                    b1.setBackgroundColor(Color.GREEN);
+                                    b1.setTextColor(Color.parseColor("#32CD32"));
                                 }
 
                                 Handler handler = new Handler();

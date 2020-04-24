@@ -160,6 +160,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 CalorieFragment calorieFragment = new CalorieFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, calorieFragment).commit();
                 break;
+            case R.id.nav_edit:
+                EditProfileFragment editProfileFragment = new EditProfileFragment();
+                Bundle argumentsEdit = new Bundle();
+                argumentsEdit.putString("login", login);
+                editProfileFragment.setArguments(argumentsEdit);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, editProfileFragment).commit();
+                break;
 
         }
 
