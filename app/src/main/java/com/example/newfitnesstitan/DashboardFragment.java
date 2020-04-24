@@ -65,6 +65,7 @@ public class DashboardFragment extends Fragment {
     public Users users;
     String name;
     String s;
+    String quiz_name;
     int a;
 
 
@@ -117,29 +118,10 @@ public class DashboardFragment extends Fragment {
                 }
             });
 
-//            image.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = getIntent();
-//                    String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-//                    i.putExtra("editProfile", login);
-//                    startActivity(i);
-//                }
-//            });
-
         }
         return rootView;
     }
 
-
-
-//    public void goToQuizzes() {
-//        Intent intent = getIntent();
-//        String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-//        Intent i = new Intent(this, QuizListActivity.class);
-//        i.putExtra("loginDetails", login);
-//        startActivity(i);
-//    }
 
     private void readData(FirestoreCallback firestoreCallback) {
         Bundle bundle = getArguments();
@@ -155,8 +137,6 @@ public class DashboardFragment extends Fragment {
                     if (e != null) {
                         return;
                     }
-//                Intent intent = getIntent();
-//                String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
 
                     Bundle bundle = getArguments();
                     String login = bundle.getString("login");
@@ -190,9 +170,17 @@ public class DashboardFragment extends Fragment {
                         }
 
                         for (Map.Entry<String, Integer> q : users.getQuizResults().entrySet()) {
-                            String quiz_name = q.getKey();
+                            quiz_name = q.getKey();
+                            if(q.getKey().equals("Carbohydrate")) {
+                                quiz_name = "Carbs";
+
+                            }
+                            else if (q.getKey().equals("Vegetable")) {
+                                quiz_name = "Veg";
+                            }
                             int quiz_result = q.getValue();
                             data.add(new ValueDataEntry(quiz_name, quiz_result));
+
                         }
                         Column column = cartesian.column(data);
 
@@ -219,8 +207,7 @@ public class DashboardFragment extends Fragment {
 
                         //cartesian.yScale().minimum(0);
                         cartesian.yScale().maximum(5);
-
-                        //cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
+                        cartesian.yScale().ticks().allowFractional(false);
 
                         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
                         cartesian.interactivity().hoverMode(HoverMode.BY_X);

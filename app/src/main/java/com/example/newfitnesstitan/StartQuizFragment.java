@@ -55,9 +55,6 @@ public class StartQuizFragment extends Fragment {
 
         quizTitle.setText(inQuizName);
 
-//        Intent intent = getIntent();
-//        String inQuizName = intent.getStringExtra("quiz_name_key");
-
         loadQuestion();
 
         total = 1;
@@ -67,7 +64,6 @@ public class StartQuizFragment extends Fragment {
     }
 
     public void loadQuestion() {
-        View rootView = getView();
 
         if (total > 5) {
             goToQuizResults();
@@ -76,8 +72,6 @@ public class StartQuizFragment extends Fragment {
 
         Bundle bundle = getArguments();
         String path = bundle.getString(QuizDescriptionFragment.KEY_START_QUIZ_PATH);
-//        Intent intent = getIntent();
-//        String path = intent.getStringExtra(QuizDescriptionActivity.KEY_START_QUIZ_PATH);
 
         CollectionReference questionOn = db.collection(path);
         String qNo = String.valueOf(total);
@@ -352,18 +346,6 @@ public class StartQuizFragment extends Fragment {
                 .replace(R.id.fragment_container, fragment)
                 .commit();
 
-//        Intent intent2 = new Intent(this, QuizResultActivity.class);
-//        String temp = String.valueOf(correct);
-//        String temp2 = String.valueOf(wrong);
-//
-//        Intent i = getIntent();
-//        String login = i.getStringExtra("loginDetails3");
-//
-//        intent2.putExtra("title", quizTitle.getText().toString());
-//        intent2.putExtra("correct", temp);
-//        intent2.putExtra("wrong", temp2);
-////        intent2.putExtra("loginDetails4", login);
-//        startActivity(intent2);
     }
 
 }

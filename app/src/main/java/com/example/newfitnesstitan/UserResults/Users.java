@@ -24,10 +24,10 @@ public class Users  {
         this.last = last;
 
         this.quizResults.put("Fruit", 0);
-        this.quizResults.put("Meat", 0);
-        this.quizResults.put("Carbs", 0);
+        this.quizResults.put("Protein", 0);
+        this.quizResults.put("Carbohydrate", 0);
         this.quizResults.put("Dairy", 0);
-        this.quizResults.put("Veg", 0);
+        this.quizResults.put("Vegetable", 0);
     }
 
     public String getUsername() {
