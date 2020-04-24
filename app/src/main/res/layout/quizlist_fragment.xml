@@ -7,24 +7,38 @@
     android:orientation="vertical"
     tools:context=".QuizListActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/quizListRecycler"
-        android:layout_width="405dp"
-        android:layout_height="561dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="68dp"
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="272dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:text="Ready to test your knowledge? Choose a quiz. "
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
-    <Button
-        android:id="@+id/button3"
+    <TextView
+        android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="56dp"
-        android:text="Button"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="My Quizzes"
+        android:textColor="#090909"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/quizListRecycler"
+        android:layout_width="320dp"
+        android:layout_height="541dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
