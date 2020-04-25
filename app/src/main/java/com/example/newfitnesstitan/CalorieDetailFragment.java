@@ -1,9 +1,12 @@
 package com.example.newfitnesstitan;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.text.DecimalFormat;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +28,7 @@ public class CalorieDetailFragment extends Fragment {
     private EditText servingSize;
     private TextView caloriesText, sugarText, fiberText, carbsText, fatsText;
     private Button button;
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
 
     @Nullable
     @Override
@@ -54,13 +60,13 @@ public class CalorieDetailFragment extends Fragment {
                 call2.enqueue(new Callback<Nutrition>() {
                     @Override
                     public void onResponse(Call<Nutrition> call, Response<Nutrition> response) {
-                        String nutri1 = String.valueOf(response.body().getHints());
+                        String nutri1 = df2.format(response.body().getHints());
                         caloriesText.setText(nutri1 + " Kcal");
-                        String nutri2 = String.valueOf(response.body().getTotalNutrients().getKcal().getCalories());
+                        String nutri2 = df2.format(response.body().getTotalNutrients().getKcal().getCalories());
                         fatsText.setText(nutri2 + " grams");
-                        String nutri3 = String.valueOf(response.body().getTotalNutrients().getFiber().getCalories());
-                        String nutri4 = String.valueOf(response.body().getTotalNutrients().getCarbs().getCalories());
-                        String nutri5 = String.valueOf(response.body().getTotalNutrients().getSugar().getCalories());
+                        String nutri3 = df2.format(response.body().getTotalNutrients().getFiber().getCalories());
+                        String nutri4 = df2.format(response.body().getTotalNutrients().getCarbs().getCalories());
+                        String nutri5 = df2.format(response.body().getTotalNutrients().getSugar().getCalories());
                         System.out.println(nutri3 + "  " + nutri4 + "  " + nutri5 + " LAST 3 NUTRI TEXT");
                         fiberText.setText(nutri3 + " grams");
                         carbsText.setText(nutri4 + " grams");
@@ -72,10 +78,13 @@ public class CalorieDetailFragment extends Fragment {
 
                     }
                 });
+                caloriesText.onEditorAction(EditorInfo.IME_ACTION_DONE);
 
             }
         });
 
         return rootView;
     }
+
+
 }
