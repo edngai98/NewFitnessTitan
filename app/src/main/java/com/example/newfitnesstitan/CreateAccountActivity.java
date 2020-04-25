@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.newfitnesstitan.UserResults.Users;
@@ -23,6 +24,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private EditText user_first_name, user_last_name, user_id, user_password;
     private Button createAccButton;
+    private TextView goToLogin;
 
 
     @Override
@@ -35,6 +37,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         user_id = findViewById(R.id.etUser);
         user_password = findViewById(R.id.etPass);
         createAccButton = findViewById(R.id.btnCreateAcc);
+        goToLogin = findViewById(R.id.goBackToLogin);
 
 
 
@@ -62,6 +65,13 @@ public class CreateAccountActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        goToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToLogin();
             }
         });
 
