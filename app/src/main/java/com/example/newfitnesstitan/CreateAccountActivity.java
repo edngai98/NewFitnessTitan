@@ -57,13 +57,18 @@ public class CreateAccountActivity extends AppCompatActivity {
 
                 Users users = new Users(username, userPass, first, last);
 
-                createUserRef.add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(CreateAccountActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-                        goToLogin();
-                    }
-                });
+                if (!first.equals("") && !last.equals("") && !username.equals("") && !userPass.equals("")) {
+
+                    createUserRef.add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Toast.makeText(CreateAccountActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                            goToLogin();
+                        }
+                    });
+                } else {
+                    Toast.makeText(CreateAccountActivity.this, "Fill in the empty fields", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
