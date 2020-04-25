@@ -76,9 +76,6 @@ public class LoginActivity extends AppCompatActivity {
     private void validate(String userName, String userPassword){
 
         Intent intent = new Intent(this, MainActivity.class);
-//        Bundle arguments = new Bundle();
-//        DashboardFragment fragment = new DashboardFragment();
-//        fragment.setArguments(arguments);
 
         checkAcc.whereEqualTo("username", userName)
                 .whereEqualTo("password", userPassword)

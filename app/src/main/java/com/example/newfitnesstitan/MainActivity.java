@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -118,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
+
     }
 
     @Override
@@ -146,9 +145,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Bundle argumentsQuiz = new Bundle();
                 QuizListFragment fragmentQuiz = new QuizListFragment();
                 fragmentQuiz.setArguments(argumentsQuiz);
-                Intent intentQuiz = getIntent();
-                String loginQuiz = intentQuiz.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
-                argumentsQuiz.putString("login",loginQuiz);
+//                Intent intentQuiz = getIntent();
+//                String loginQuiz = intentQuiz.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
+                argumentsQuiz.putString("login",login);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentQuiz).commit();
                 break;
             case R.id.nav_learnings:
@@ -185,7 +184,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(intentLogout);
                     }
                 });
-
                 break;
 
         }

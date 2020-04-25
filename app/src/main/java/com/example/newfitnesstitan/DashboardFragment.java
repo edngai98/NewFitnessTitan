@@ -29,6 +29,7 @@ import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 import com.bumptech.glide.Glide;
 import com.example.newfitnesstitan.UserResults.Users;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -74,10 +75,7 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-//        image = findViewById(R.id.editProfile);
+        
     }
 
     @Nullable
@@ -103,6 +101,8 @@ public class DashboardFragment extends Fragment {
             new JokeTask().execute();
 
         }
+
+
         return rootView;
     }
 
