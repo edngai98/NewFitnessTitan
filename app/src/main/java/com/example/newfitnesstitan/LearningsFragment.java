@@ -45,11 +45,6 @@ public class LearningsFragment extends Fragment {
         adapter = new LearningAdapter(options);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        //Intent intent = new Intent (this, LearningDetail.class);
-
-
-
         adapter.setOnItemClickListener(new LearningAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
@@ -67,11 +62,6 @@ public class LearningsFragment extends Fragment {
                         .replace(R.id.fragment_container, fragment)
                         .addToBackStack(null)
                         .commit();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("learning", path);
-
-//                intent.putExtra("learning", path);
-//                startActivity(intent);
 
             }
         });

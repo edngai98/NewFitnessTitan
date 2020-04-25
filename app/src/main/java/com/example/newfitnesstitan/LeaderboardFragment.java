@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class LeaderboardFragment extends Fragment {
     private TextView leaderName4;
     private TextView leaderName5;
     private TextView leaderName6;
-
+    private Button button;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference x = db.collection("users");
@@ -63,6 +64,7 @@ public class LeaderboardFragment extends Fragment {
             leaderName4 = rootView.findViewById(R.id.leaderName4);
             leaderName5 = rootView.findViewById(R.id.leaderName5);
             leaderName6 = rootView.findViewById(R.id.leaderName6);
+
             noteRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -95,6 +97,7 @@ public class LeaderboardFragment extends Fragment {
                     }
                 }
             });
+
         }
         return rootView;
 
