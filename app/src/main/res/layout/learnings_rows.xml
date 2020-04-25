@@ -43,13 +43,13 @@
             android:layout_below="@+id/learning_name"
             android:layout_alignParentStart="true"
             android:layout_marginStart="79dp"
-            android:layout_marginTop="-1dp"
+            android:paddingTop="8dp"
             android:text="Description" />
 
         <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="59dp"
-            android:layout_height="59dp"
+            android:id="@+id/imageView3"
+            android:layout_width="68dp"
+            android:layout_height="65dp"
             app:srcCompat="@drawable/banana" />
 
     </RelativeLayout>

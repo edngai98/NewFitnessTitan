@@ -1,18 +1,24 @@
 package com.example.newfitnesstitan;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class LearningAdapter extends FirestoreRecyclerAdapter<LearningsModule, LearningAdapter.LearningHolder> {
+
+        public Context context;
         private LearningAdapter.OnItemClickListener listener;
 
 
@@ -30,6 +36,11 @@ public class LearningAdapter extends FirestoreRecyclerAdapter<LearningsModule, L
     protected void onBindViewHolder(@NonNull LearningAdapter.LearningHolder learningHolder, int i, @NonNull LearningsModule learningModule) {
         learningHolder.name.setText(learningModule.getName());
         learningHolder.summary.setText(learningModule.getSummary());
+        Glide.with(learningHolder.itemView.getContext())
+                .load(FirebaseStorage.getInstance().getReferenceFromUrl(learningModule.getImage()))
+                .centerCrop()
+                .override(250,250)
+                .into(learningHolder.image);
 
     }
 
@@ -41,11 +52,13 @@ public class LearningAdapter extends FirestoreRecyclerAdapter<LearningsModule, L
     }
     public class LearningHolder extends RecyclerView.ViewHolder {
             TextView name, summary;
+            ImageView image;
 
             public LearningHolder (View view){
                 super(view);
                 name = view.findViewById(R.id.learning_name);
                 summary = view.findViewById(R.id.learning_description);
+                image = view.findViewById(R.id.imageView3);
 
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
