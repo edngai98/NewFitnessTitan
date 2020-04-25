@@ -5,18 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/imageFromDB"
-        android:layout_width="109dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="147dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="147dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/kcal" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="409dp"
@@ -32,6 +20,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageFromDB"
+                android:layout_width="124dp"
+                android:layout_height="113dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginEnd="143dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/kcal" />
 
             <TextView
                 android:id="@+id/tvQuizName"
@@ -84,7 +82,7 @@
         android:layout_width="334dp"
         android:layout_height="114dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="@font/roboto"
         android:text="A balanced diet that covers all key food groups is key to ensuring your body receives the nutrition it needs for a healthy body and mind.  "
         android:textColor="#000000"

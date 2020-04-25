@@ -22,12 +22,13 @@
 
             <ImageView
                 android:id="@+id/imageFromDB"
-                android:layout_width="109dp"
-                android:layout_height="86dp"
+                android:layout_width="132dp"
+                android:layout_height="122dp"
                 android:layout_marginStart="147dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="147dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.529"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/kcal" />
@@ -92,22 +93,22 @@
     <TextView
         android:id="@+id/calories"
         android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="36dp"
         android:text="KCal"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
 
     <TextView
         android:id="@+id/fiber"
         android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="104dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="116dp"
         android:layout_marginEnd="36dp"
         android:text="Grams"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
 
@@ -115,34 +116,34 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Calories"
         android:textColor="#090808"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
-        tools:textSize="18sp" />
+        tools:textSize="22sp" />
 
     <TextView
         android:id="@+id/sugar"
-        android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="132dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="36dp"
         android:text="Grams"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
 
     <TextView
         android:id="@+id/fats"
         android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="188dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="208dp"
         android:layout_marginEnd="36dp"
         android:text="Grams"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
 
@@ -150,23 +151,23 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="208dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Fats"
         android:textColor="#090808"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
-        tools:textSize="18sp" />
+        tools:textSize="22sp" />
 
     <TextView
         android:id="@+id/carbohydrates"
         android:layout_width="130dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="148dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="160dp"
         android:layout_marginEnd="36dp"
         android:text="Grams"
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz" />
 
@@ -174,39 +175,39 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="160dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Carbohydrates"
         android:textColor="#090808"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
-        tools:textSize="18sp" />
+        tools:textSize="22sp" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="116dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Fiber"
         android:textColor="#090808"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
-        tools:textSize="18sp" />
+        tools:textSize="22sp" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Sugars"
         android:textColor="#090808"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartQuiz"
-        tools:textSize="18sp" />
+        tools:textSize="22sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
