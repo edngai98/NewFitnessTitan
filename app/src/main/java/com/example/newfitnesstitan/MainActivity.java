@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 LearningsFragment fragment1 = new LearningsFragment();
                 Bundle arguments2 = new Bundle();
                 arguments2.putString("checker", "true1" );
+                arguments2.putString("login", login);
                 fragment1.setArguments(arguments2);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment1).commit();
                 break;

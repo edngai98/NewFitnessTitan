@@ -73,7 +73,7 @@
                     android:padding="10dp"
                     android:text="Option 1"
                     android:textAlignment="center"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/option2"
@@ -86,7 +86,7 @@
                     android:padding="10dp"
                     android:text="Option 2"
                     android:textAlignment="center"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>
@@ -111,7 +111,7 @@
                     android:padding="10dp"
                     android:text="Option 3"
                     android:textAlignment="center"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/option4"
@@ -124,7 +124,7 @@
                     android:padding="10dp"
                     android:text="Option 4"
                     android:textAlignment="center"
-                    android:textSize="20dp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>

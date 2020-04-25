@@ -70,6 +70,8 @@ public class QuizListFragment extends Fragment {
                 QuizDescriptionFragment fragment = new QuizDescriptionFragment();
                 fragment.setArguments(arguments);
                 arguments.putString(KEY_PATH, path);
+                System.out.println("this is QuizList");
+                System.out.println(path);
                 arguments.putString("loginDetails2", login);
                 System.out.println(login);
                 getFragmentManager().beginTransaction()

@@ -53,12 +53,16 @@ public class LearningsFragment extends Fragment {
         adapter.setOnItemClickListener(new LearningAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Bundle bundle = getArguments();
+                String login = bundle.getString("login");
 
                 String path = documentSnapshot.getReference().getPath();
                 Bundle arguments = new Bundle();
                 LearningDetailFragment fragment = new LearningDetailFragment();
                 fragment.setArguments(arguments);
                 arguments.putString("learning", path);
+                System.out.println(path);
+                arguments.putString("login", login);
                 getFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment)
                         .addToBackStack(null)

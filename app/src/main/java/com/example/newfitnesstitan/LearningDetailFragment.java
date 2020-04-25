@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class LearningDetailFragment extends Fragment {
     private ImageView image;
     private Context context;
     private ListenerRegistration registration;
+    private Button startQuizbtn;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,7 @@ public class LearningDetailFragment extends Fragment {
         name = rootView.findViewById(R.id.tvQuizName);
         description = rootView.findViewById(R.id.quiz_description_text);
         image = rootView.findViewById(R.id.imageFromDB);
+        startQuizbtn = rootView.findViewById(R.id.StartQuizFromLearnings);
         Bundle bundle = getArguments();
         String path = bundle.getString("learning");
         DocumentReference getSpecificLearning = db.document(path);
@@ -73,6 +76,26 @@ public class LearningDetailFragment extends Fragment {
                 }
             }
         });
+
+        startQuizbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = getArguments();
+                String login = bundle.getString("login");
+                String path = "quizzes/" + name.getText().toString();
+                Bundle arguments = new Bundle();
+                QuizDescriptionFragment fragment = new QuizDescriptionFragment();
+                fragment.setArguments(arguments);
+                arguments.putString("learning", path);
+                System.out.println(path);
+                arguments.putString("login", login);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
         return rootView;
     }
     @Override

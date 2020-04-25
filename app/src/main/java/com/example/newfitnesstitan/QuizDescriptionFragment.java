@@ -43,6 +43,10 @@ public class QuizDescriptionFragment extends Fragment {
     private ImageView searchButton;
     private ListenerRegistration registration;
     private ListenerRegistration registration2;
+    private DocumentReference getSpecificQuiz;
+    private String path2;
+    private String login;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,8 +67,14 @@ public class QuizDescriptionFragment extends Fragment {
 
         Bundle bundle = getArguments();
         String path = bundle.getString(QuizListFragment.KEY_PATH);
+        path2 = bundle.getString("learning");
 
-        DocumentReference getSpecificQuiz = db.document(path);
+        if (path == null) {
+            getSpecificQuiz = db.document(path2);
+        } else {
+            getSpecificQuiz = db.document(path);
+        }
+
 
         registration = getSpecificQuiz.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -92,7 +102,11 @@ public class QuizDescriptionFragment extends Fragment {
                         public void onClick(View v) {
                             String path2 = documentSnapshot.getReference().getPath() +"/Details";
                             Bundle bundle = getArguments();
-                            String login = bundle.getString("loginDetails2");
+                            login = bundle.getString("loginDetails2");
+                            if (bundle.getString("loginDetails2") == null) {
+                                login = bundle.getString("login");
+                            }
+
                             String quiz_name = quizDescriptions.getName();
 
                             Bundle arguments = new Bundle();
@@ -116,7 +130,11 @@ public class QuizDescriptionFragment extends Fragment {
             }
         });
 
-        String login = bundle.getString("loginDetails2");
+        login = bundle.getString("loginDetails2");
+        if (bundle.getString("loginDetails2") == null) {
+            login = bundle.getString("login");
+        }
+
         DocumentReference userScore = db.document("users/" + login);
 
         registration2 = userScore.addSnapshotListener(new EventListener<DocumentSnapshot>() {
