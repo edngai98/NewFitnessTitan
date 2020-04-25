@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -167,6 +169,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 argumentsEdit.putString("login", login);
                 editProfileFragment.setArguments(argumentsEdit);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, editProfileFragment).commit();
+                break;
+            case R.id.nav_logout:
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+                View mView = getLayoutInflater().inflate(R.layout.logout_builder, null);
+                Button mLogOut = mView.findViewById(R.id.btnLogOut);
+                Intent intentLogout = new Intent(this, LoginActivity.class);
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+                mLogOut.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.hide();
+                        startActivity(intentLogout);
+                    }
+                });
+
                 break;
 
         }
