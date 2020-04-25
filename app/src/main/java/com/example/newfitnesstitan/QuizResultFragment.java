@@ -65,6 +65,7 @@ public class QuizResultFragment extends Fragment {
                 arguments.putString("class", "true");
                 arguments.putString("checker", "true1");
                 arguments.putString("login", login);
+                arguments.putString("navbarchecker", "true");
                 System.out.println("this is the QuizResultFragment");
                 System.out.println(login);
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container,
