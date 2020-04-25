@@ -64,8 +64,11 @@ public class LoginActivity extends AppCompatActivity {
         Signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                validate(Name.getText().toString(), Password.getText().toString());
+                if (!Name.getText().toString().equals("") && !Password.getText().toString().equals("")) {
+                    validate(Name.getText().toString(), Password.getText().toString());
+                } else {
+                    Toast.makeText(LoginActivity.this, "Fill in the empty fields", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
