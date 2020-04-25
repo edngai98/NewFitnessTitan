@@ -32,8 +32,6 @@ public class LearningsFragment extends Fragment {
     private LearningAdapter adapter;
 
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

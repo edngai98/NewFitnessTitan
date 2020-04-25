@@ -2,6 +2,7 @@ package com.example.newfitnesstitan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,25 +100,7 @@ public class DashboardFragment extends Fragment {
 
                 }
             });
-            Retrofit retrofit = new Retrofit.Builder().
-                    baseUrl("https://api.spoonacular.com/").
-                    addConverterFactory(GsonConverterFactory.create()).
-                    build();
-
-            JokeAPI quoteapi =retrofit.create(JokeAPI.class);
-            Call<Joke> call = quoteapi.getQuote();
-            call.enqueue(new Callback<Joke>() {
-                @Override
-                public void onResponse(Call<Joke> call, Response<Joke> response) {
-                    String quote = String.valueOf(response.body().getQuote());
-                    funnyJokes.setText(quote);
-                }
-
-                @Override
-                public void onFailure(Call<Joke> call, Throwable t) {
-
-                }
-            });
+            new JokeTask().execute();
 
         }
         return rootView;
@@ -146,7 +130,7 @@ public class DashboardFragment extends Fragment {
                         users = documentSnapshot.toObject(Users.class);
                         System.out.println(users.getFirst());
                         String className = bundle.getString("class");
-//                    String className = getIntent().getStringExtra("class");
+
                         tvHelloMate.setText("Hello " + users.getFirst() + ",");
                         if (className.equals("true")) {
 
@@ -212,9 +196,6 @@ public class DashboardFragment extends Fragment {
                         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
                         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
-                        //cartesian.xAxis(0).title("Product");
-                        //cartesian.yAxis(0).title("Revenue");
-
                         anyChartView.setChart(cartesian);
 
                     }
@@ -235,5 +216,35 @@ public class DashboardFragment extends Fragment {
 
     private interface FirestoreCallback {
         void onCallback(List<DataEntry> list);
+    }
+
+
+    public class JokeTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            try {
+                Retrofit retrofit = new Retrofit.Builder().
+                        baseUrl("https://api.spoonacular.com/").
+                        addConverterFactory(GsonConverterFactory.create()).
+                        build();
+
+                JokeAPI quoteapi = retrofit.create(JokeAPI.class);
+                Call<Joke> call = quoteapi.getQuote();
+                Response<Joke> jokeResponse = call.execute();
+                String quote = String.valueOf(jokeResponse.body().getQuote());
+                return quote;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            funnyJokes.setText(s);
+        }
     }
 }

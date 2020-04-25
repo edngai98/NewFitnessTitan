@@ -43,17 +43,12 @@ public class LeaderboardFragment extends Fragment {
     private static final String KEY_LEADER = "first";
     private static final String KEY_SCORE = "last";
 
-    HashMap<Integer, String> leadValues = new HashMap<Integer, String>();
-
-    ArrayList<Integer> scoreList = new ArrayList<Integer>();
-    ArrayList<People> newList = new ArrayList<People>();
-    public Leaderboard leaderboard;
     ArrayList<Leaderboard> peopleList = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       // setContentView(R.layout.activity_main);
+
         View rootView = inflater.inflate(R.layout.leaderboard_fragment, container, false);
         Bundle bundle = getArguments();
         String s = bundle.getString("login");
@@ -68,7 +63,7 @@ public class LeaderboardFragment extends Fragment {
             leaderName4 = rootView.findViewById(R.id.leaderName4);
             leaderName5 = rootView.findViewById(R.id.leaderName5);
             leaderName6 = rootView.findViewById(R.id.leaderName6);
-           noteRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            noteRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
