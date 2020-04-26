@@ -22,7 +22,7 @@
             <item
                 android:id="@+id/nav_calorie"
                 android:icon="@drawable/ic_calorie"
-                android:title="Calorie Counter" />
+                android:title="Nutrition Calculator" />
             <item
                 android:id="@+id/nav_edit"
                 android:icon="@drawable/ic_account"
