@@ -31,7 +31,6 @@ public class QuizAdapter extends FirestoreRecyclerAdapter<QuizDescriptions, Quiz
     protected void onBindViewHolder(@NonNull QuizAdapter.QuizHolder holder, int position, @NonNull QuizDescriptions quizDescriptions) {
 
         holder.name.setText(quizDescriptions.getName());
-        //holder.description.setText(quizDescriptions.getDescription());
         Glide.with(holder.itemView.getContext())
                 .load(FirebaseStorage.getInstance().getReferenceFromUrl(quizDescriptions.getImage()))
                 .centerCrop()
@@ -55,7 +54,6 @@ public class QuizAdapter extends FirestoreRecyclerAdapter<QuizDescriptions, Quiz
         public QuizHolder (View view) {
             super(view);
             name = view.findViewById(R.id.quiz_name);
-            //description = view.findViewById(R.id.quiz_short_description);
             image = view.findViewById(R.id.imageView);
 
             view.setOnClickListener(new View.OnClickListener() {

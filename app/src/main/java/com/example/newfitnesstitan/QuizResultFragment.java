@@ -47,7 +47,7 @@ public class QuizResultFragment extends Fragment {
 
         Button update_button = rootView.findViewById(R.id.SetQuizResult);
 
-        //Update Quiz
+        //Update Quiz result if they don't already have one
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +56,7 @@ public class QuizResultFragment extends Fragment {
 
                 Bundle bundle = getArguments();
                 String login = bundle.getString("loginDetails4");
-
+                //Sending back the required arguments for home page functionality
                 Bundle arguments = new Bundle();
                 DashboardFragment fragment = new DashboardFragment();
                 fragment.setArguments(arguments);

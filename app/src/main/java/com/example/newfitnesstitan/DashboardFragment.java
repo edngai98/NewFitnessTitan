@@ -47,6 +47,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DashboardFragment extends Fragment {
 
+//Firestore database call information variables declared here
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference quizResultRef;
     private Cartesian cartesian;
@@ -79,35 +80,36 @@ public class DashboardFragment extends Fragment {
         Bundle bundle = getArguments();
         s = bundle.getString("login");
         String temp = bundle.getString("checker");
-        //Intent intent = new Intent(getContext(), QuizListActivity.class);
+        //Temp is a checker to see if they are coming from login activity or another navigation screen
+        // It is passed via intent for any fragment that returns to the home page after it is completed
         if (!temp.equals("true")) {
             tvHelloMate = rootView.findViewById(R.id.textView2);
             anyChartView = rootView.findViewById(R.id.any_chart_view);
             anyChartView.setProgressBar(rootView.findViewById(R.id.progress_bar));
             cartesian = AnyChart.column();
             funnyJokes = rootView.findViewById(R.id.funnyJoke);
+            //Async task to read data from the database
             readData(new FirestoreCallback() {
                 @Override
                 public void onCallback(List<DataEntry> list) {
 
                 }
             });
+            //Begin ASYNC Task and API call
             new JokeTask().execute();
 
         }
-
-
         return rootView;
     }
 
-
+    //Async task to pull from Firestore database
     private void readData(FirestoreCallback firestoreCallback) {
         Bundle bundle = getArguments();
         String login = bundle.getString("login");
         String temp = bundle.getString("checker");
         System.out.println(login);
         if (!temp.equals("true")) {
-
+            //Get the user that is logged in
             final DocumentReference quizResultRef = db.document("users/" + login);
             registration = quizResultRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
@@ -115,10 +117,10 @@ public class DashboardFragment extends Fragment {
                     if (e != null) {
                         return;
                     }
-
+                    //Getting the login from other fragments
                     Bundle bundle = getArguments();
                     String login = bundle.getString("login");
-
+                    //Creating a list here for the Anychart API
                     List<DataEntry> data = new ArrayList<>();
                     if (documentSnapshot != null && documentSnapshot.exists()) {
                         users = documentSnapshot.toObject(Users.class);
@@ -126,6 +128,7 @@ public class DashboardFragment extends Fragment {
                         String className = bundle.getString("class");
 
                         tvHelloMate.setText("Hello " + users.getFirst() + ",");
+                        //Checker from the quizResult fragment, upon change it'll reflect in the database
                         if (className.equals("true")) {
 
                             for (Map.Entry<String, Integer> q : users.getQuizResults().entrySet()) {
@@ -146,9 +149,10 @@ public class DashboardFragment extends Fragment {
                             }
 
                         }
-
+                        //Put the data into the Anychart API
                         for (Map.Entry<String, Integer> q : users.getQuizResults().entrySet()) {
                             quiz_name = q.getKey();
+                            //Trim the titles to ensure they fit on the screen
                             if(q.getKey().equals("Carbohydrate")) {
                                 quiz_name = "Carbs";
 
@@ -169,7 +173,7 @@ public class DashboardFragment extends Fragment {
                                 .offsetX(0)
                                 .offsetY(5)
                                 .format("{%Value}{groupsSeparator: }");
-
+                        //AnyChart API colour formatting
                         column.stroke("function() {" +
                                 "if (this.value >= 0 && this.value <=2) {return 'red';}\n" +
                                 "else if (this.value < 5 && this.value >= 3) {return 'orange';}\n" +
@@ -200,7 +204,7 @@ public class DashboardFragment extends Fragment {
 
 
     }
-
+    //To stop listening to the database after it has requested information
     @Override
     public void onStop() {
         super.onStop();
@@ -212,7 +216,7 @@ public class DashboardFragment extends Fragment {
         void onCallback(List<DataEntry> list);
     }
 
-
+//Async task
     public class JokeTask extends AsyncTask<Void, Void, String> {
 
         @Override

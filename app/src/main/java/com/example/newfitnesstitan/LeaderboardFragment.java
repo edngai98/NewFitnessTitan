@@ -40,10 +40,6 @@ public class LeaderboardFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference x = db.collection("users");
     private CollectionReference noteRef = db.collection("users");
-
-    private static final String KEY_LEADER = "first";
-    private static final String KEY_SCORE = "last";
-
     ArrayList<Leaderboard> peopleList = new ArrayList<>();
 
     @Nullable
@@ -68,20 +64,26 @@ public class LeaderboardFragment extends Fragment {
             noteRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    //Check if the task is successful
                     if (task.isSuccessful()) {
+                        //Loop through a users results and add them together to get their total results
+                        //Put results into a list
                         for (QueryDocumentSnapshot qs : task.getResult()) {
+                            //Map the results to a People class
                             People people = qs.toObject(People.class);
                             String name = people.getUsername();
                             int a = 0;
+                            //Adding the results together
                             for (Map.Entry<String, Integer> q : people.getQuizResults().entrySet()) {
                                 int quiz_result = q.getValue();
+                                //Add the results to itself each time it finds a value
                                 a = quiz_result + a;
                             }
                             peopleList.add(new Leaderboard(name, a));
 
 
                         }
-
+                        //Sorting the arrayList by descending value and getting the top three results
                         Collections.sort(peopleList);
                         leaderName.setText(peopleList.get(1).getName());
                         leaderName5.setText(peopleList.get(1).getName());

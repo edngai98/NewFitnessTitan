@@ -24,14 +24,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class LearningDetailFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    public static final String KEY_START_QUIZ_PATH = "start quiz";
-    private StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://fitnesstitan-5ed50.appspot.com/api.png");
-
     private TextView name, description;
     private ImageView image;
     private Context context;
@@ -47,7 +42,6 @@ public class LearningDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.learning_detail_fragment, container, false);
-
         name = rootView.findViewById(R.id.tvQuizName);
         description = rootView.findViewById(R.id.quiz_description_text);
         image = rootView.findViewById(R.id.imageFromDB);
@@ -55,10 +49,9 @@ public class LearningDetailFragment extends Fragment {
         searchButton = rootView.findViewById(R.id.ivSearch);
         Bundle bundle = getArguments();
         String path = bundle.getString("learning");
+        //Grabbing the database reference
         DocumentReference getSpecificLearning = db.document(path);
-
-//        Intent intent2 = new Intent(this, StartQuizActivity.class);
-
+        //Registration is to stop the database from listening constantly and not updating the view
         registration = getSpecificLearning.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -81,7 +74,7 @@ public class LearningDetailFragment extends Fragment {
                 }
             }
         });
-
+        //This takes the user from learnings to quiz description fragment
         startQuizbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +108,7 @@ public class LearningDetailFragment extends Fragment {
         registration.remove();
 
     }
-
+    //Search function to launch Google search
     private void searchLearning(String name) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + name));
         startActivity(intent);

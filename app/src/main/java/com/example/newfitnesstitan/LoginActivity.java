@@ -39,8 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     private CollectionReference checkAcc = db.collection("users");
 
     public static final String KEY_LOGIN_TO_MAIN = "log2main";
-    public static final String KEY_LOGIN_TO_QUIZRESULT = "log2result";
-
     private EditText Name;
     private EditText Password;
     private Button Signin;
@@ -65,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         Signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Check if fields are blank
                 if (!Name.getText().toString().equals("") && !Password.getText().toString().equals("")) {
                     validate(Name.getText().toString(), Password.getText().toString());
 
@@ -75,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+    //Validate to see if the user exists
     private void validate(String userName, String userPassword){
 
         Intent intent = new Intent(this, MainActivity.class);
@@ -89,9 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if(task.getResult().size() > 0) {
                                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                    //Trying to see if the path exists in the database
                                     String path = documentSnapshot.getId();
-//                                    arguments.putString(KEY_LOGIN_TO_MAIN, path);
-//                                    arguments.putString("class", "false");
                                     intent.putExtra(KEY_LOGIN_TO_MAIN, path);
                                     intent.putExtra("secure", "true1");
                                     intent.putExtra("class", "false");

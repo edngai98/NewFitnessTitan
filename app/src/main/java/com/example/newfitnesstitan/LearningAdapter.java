@@ -16,7 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
-
+//Firestore Recyler Adapter method
 public class LearningAdapter extends FirestoreRecyclerAdapter<LearningsModule, LearningAdapter.LearningHolder> {
 
         public Context context;
@@ -35,8 +35,10 @@ public class LearningAdapter extends FirestoreRecyclerAdapter<LearningsModule, L
 
     @Override
     protected void onBindViewHolder(@NonNull LearningAdapter.LearningHolder learningHolder, int i, @NonNull LearningsModule learningModule) {
+        //Referencing the required fields inside the database using the learnings module object
         learningHolder.name.setText(learningModule.getName());
         learningHolder.summary.setText(learningModule.getSummary());
+        //Glide class to assign images to list
         Glide.with(learningHolder.itemView.getContext())
                 .load(FirebaseStorage.getInstance().getReferenceFromUrl(learningModule.getImage()))
                 .centerCrop()

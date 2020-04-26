@@ -11,6 +11,7 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.InputStream;
+//To load images into recyclerviews
 
 @GlideModule
 public class MyAppModule extends AppGlideModule {

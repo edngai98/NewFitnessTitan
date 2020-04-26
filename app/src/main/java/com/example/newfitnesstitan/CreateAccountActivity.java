@@ -31,16 +31,12 @@ public class CreateAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-
         user_first_name = findViewById(R.id.etFirst);
         user_last_name = findViewById(R.id.etLast);
         user_id = findViewById(R.id.etUser);
         user_password = findViewById(R.id.etPass);
         createAccButton = findViewById(R.id.btnCreateAcc);
         goToLogin = findViewById(R.id.goBackToLogin);
-
-
-
     }
 
     @Override
@@ -57,6 +53,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
                 Users users = new Users(username, userPass, first, last);
 
+                //Validates if they have inputted values into the fields and not left them blank
                 if (!first.equals("") && !last.equals("") && !username.equals("") && !userPass.equals("")) {
 
                     createUserRef.add(users).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -67,6 +64,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                         }
                     });
                 } else {
+                    //Popup to inform user of incorrect entry
                     Toast.makeText(CreateAccountActivity.this, "Fill in the empty fields", Toast.LENGTH_SHORT).show();
                 }
 

@@ -1,6 +1,7 @@
 package com.example.newfitnesstitan;
 
 import com.google.gson.annotations.SerializedName;
+//Get third layer of Nutrition API call
 
 public class NutritionFood {
     @SerializedName("FAT")

@@ -53,9 +53,9 @@ public class StartQuizFragment extends Fragment {
         String inQuizName = bundle.getString("quiz_name_key");
 
         quizTitle.setText(inQuizName);
-
+        //Running the question method
         loadQuestion();
-
+        //Setting the question number that they are on which is 1
         total = 1;
         question = rootView.findViewById(R.id.question_name);
 
@@ -63,7 +63,7 @@ public class StartQuizFragment extends Fragment {
     }
 
     public void loadQuestion() {
-
+        //If they have reached 5 questions, they finish the quiz
         if (total > 5) {
             goToQuizResults();
             return;
@@ -74,14 +74,14 @@ public class StartQuizFragment extends Fragment {
 
         CollectionReference questionOn = db.collection(path);
         String qNo = String.valueOf(total);
-
+        //Querying the database for the specific question
         registration = questionOn.whereEqualTo("tag",qNo).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
                     return;
                 }
-
+                //Looping through the question to get the multiple choice options
                 for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
                     final QuizQuestions quizQuestions = documentSnapshot.toObject(QuizQuestions.class);
 
@@ -90,12 +90,12 @@ public class StartQuizFragment extends Fragment {
                     b2.setText(quizQuestions.getOption2());
                     b3.setText(quizQuestions.getOption3());
                     b4.setText(quizQuestions.getOption4());
-
+                    //Reset colour back to black for choices
                     b1.setTextColor(Color.parseColor("#000000"));
                     b2.setTextColor(Color.parseColor("#000000"));
                     b3.setTextColor(Color.parseColor("#000000"));
                     b4.setTextColor(Color.parseColor("#000000"));
-
+                    //First button functionality
                     b1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -103,7 +103,7 @@ public class StartQuizFragment extends Fragment {
                             //answer if correct
                             if(b1.getText().toString().equals(quizQuestions.getAnswer())) {
 
-                                //change colours here
+                                //Changes answer selected to green if correct
                                 b1.setTextColor(Color.parseColor("#32CD32"));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -115,6 +115,7 @@ public class StartQuizFragment extends Fragment {
                                         b1.setTextColor(Color.parseColor("#32CD32"));
 
                                         total++;
+                                        //increment total value and correct responses total and re-run question method
                                         loadQuestion();
 
                                     }
@@ -126,7 +127,7 @@ public class StartQuizFragment extends Fragment {
 
                                 wrong++;
                                 b1.setTextColor(Color.RED);
-
+                                //light up the correct answer to green if Incorrect response is chosen 
                                 if(b2.getText().toString().equals(quizQuestions.getAnswer())) {
                                     b2.setTextColor(Color.parseColor("#32CD32"));
                                 }

@@ -25,14 +25,12 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
-//import com.anychart.sample.R;
+
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    public static final String KEY_PATH = "path needed";
     private DrawerLayout drawerLayout;
     private TextView name;
     private ListenerRegistration registration;
@@ -42,14 +40,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Toolbar to edit the top bar of view
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        //Toggle the navbar drawer
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-
+        //Check to see if container is null, if so inflate the view with dashboard fragment
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
             DashboardFragment fragment = new DashboardFragment();
@@ -93,14 +91,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
-
+    //Switch the fragments based on the navigation item selected
     @Override
+    //Implementing the navigation interface
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Intent intent = getIntent();
         String login = intent.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 String className = intent.getStringExtra("class");
+                //Create a bundle to pass the login, the className that we want to open as well as a checker class
+                //Checker is passed to see if we are coming back to home fragment from somewhere other than Login
                 Bundle arguments = new Bundle();
                 DashboardFragment fragment = new DashboardFragment();
                 fragment.setArguments(arguments);
@@ -120,8 +121,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Bundle argumentsQuiz = new Bundle();
                 QuizListFragment fragmentQuiz = new QuizListFragment();
                 fragmentQuiz.setArguments(argumentsQuiz);
-//                Intent intentQuiz = getIntent();
-//                String loginQuiz = intentQuiz.getStringExtra(LoginActivity.KEY_LOGIN_TO_MAIN);
                 argumentsQuiz.putString("login",login);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentQuiz).commit();
                 break;
@@ -145,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, editProfileFragment).commit();
                 break;
             case R.id.nav_logout:
+                //Asks if the person is sure they want to logout
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
                 View mView = getLayoutInflater().inflate(R.layout.logout_builder, null);
                 Button mLogOut = mView.findViewById(R.id.btnLogOut);
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    //Close nav bar drawer after pressing a button
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

@@ -30,6 +30,7 @@ public class LearningsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.learnings_fragment, container, false);
+        //Query the Firebase database to grab all the learnings to put into an adaptor
         FirestoreRecyclerOptions<LearningsModule> options = new FirestoreRecyclerOptions.Builder<LearningsModule>()
                 .setQuery(getLearningsDatabase, LearningsModule.class)
                 .build();
@@ -44,7 +45,6 @@ public class LearningsFragment extends Fragment {
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Bundle bundle = getArguments();
                 String login = bundle.getString("login");
-
                 String path = documentSnapshot.getReference().getPath();
                 Bundle arguments = new Bundle();
                 LearningDetailFragment fragment = new LearningDetailFragment();

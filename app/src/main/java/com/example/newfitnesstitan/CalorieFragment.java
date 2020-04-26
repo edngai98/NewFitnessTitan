@@ -24,10 +24,11 @@ public class CalorieFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        //Find the layout that this fragment is attached to
         View rootView = inflater.inflate(R.layout.calorie_start_info, container, false);
-        //Java won't let me update the button to be a different ID so it'll have to be StartQuiz for now
+        //Find the buttons on the screen
         button = rootView.findViewById(R.id.StartQuiz);
+        //Used an on click listener to open up a new activity
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,8 +38,6 @@ public class CalorieFragment extends Fragment {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
             }
         });
-
-
         return  rootView;
     }
 }

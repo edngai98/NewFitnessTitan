@@ -26,9 +26,6 @@ public class QuizListFragment extends Fragment {
     private CollectionReference getQuizDatabase = db.collection("quizzes");
     public static final String KEY_PATH = "path needed";
     private QuizAdapter adapter;
-    private DrawerLayout drawerLayout;
-    private EditText searchView;
-    String data;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

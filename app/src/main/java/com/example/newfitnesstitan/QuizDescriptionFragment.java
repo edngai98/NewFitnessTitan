@@ -54,25 +54,22 @@ public class QuizDescriptionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.quiz_description_fragment, container, false);
-
         name = rootView.findViewById(R.id.tvQuizName);
         description = rootView.findViewById(R.id.quiz_description_text);
         image = rootView.findViewById(R.id.imageFromDB);
         button = rootView.findViewById(R.id.StartQuiz);
         RatingBar ratingBar = rootView.findViewById(R.id.bestScore);
         searchButton = rootView.findViewById(R.id.ivSearch);
-
         Bundle bundle = getArguments();
         String path = bundle.getString(QuizListFragment.KEY_PATH);
         path2 = bundle.getString("learning");
-
         if (path == null) {
             getSpecificQuiz = db.document(path2);
         } else {
             getSpecificQuiz = db.document(path);
         }
 
-
+        //Gets the quiz content from the database
         registration = getSpecificQuiz.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -133,7 +130,7 @@ public class QuizDescriptionFragment extends Fragment {
         }
 
         DocumentReference userScore = db.document("users/" + login);
-
+        //get the best result of the user from the database
         registration2 = userScore.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {

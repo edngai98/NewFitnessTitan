@@ -51,14 +51,14 @@ public class EditProfileFragment extends Fragment {
         String login = bundle.getString("login");
 
         doc = db.collection("users").document(login);
-
+        //Getting the login
         doc.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
                     return;
                 }
-
+                //Check if the user exists in the database and set the new details
                 if(documentSnapshot.exists()) {
                     Users user = documentSnapshot.toObject(Users.class);
                     user_first_name.setText(user.getFirst());
@@ -88,6 +88,7 @@ public class EditProfileFragment extends Fragment {
                     mSave.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            //Update the document in Firestore
                             doc.update(
                                     "first", first,
                                     "last", last,
