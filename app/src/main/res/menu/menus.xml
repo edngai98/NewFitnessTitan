@@ -29,10 +29,11 @@
                 android:title="My Profile" />
 
         </group>
-    
-    <item android:id="@+id/nav_logout"
-        android:icon="@drawable/ic_home"
-        android:title="Log out" >
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_exit"
+        android:title="Log out">
 
     </item>
 
