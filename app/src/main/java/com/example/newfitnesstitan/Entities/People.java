@@ -1,4 +1,4 @@
-package com.example.newfitnesstitan;
+package com.example.newfitnesstitan.Entities;
 
 import java.util.HashMap;
 //Renamed to users later

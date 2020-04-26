@@ -1,5 +1,6 @@
-package com.example.newfitnesstitan;
+package com.example.newfitnesstitan.Entities;
 
+import com.example.newfitnesstitan.NutritionFood;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

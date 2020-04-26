@@ -1,4 +1,4 @@
-package com.example.newfitnesstitan;
+package com.example.newfitnesstitan.Entities;
 
 public class LearningsModule {
     private String description;

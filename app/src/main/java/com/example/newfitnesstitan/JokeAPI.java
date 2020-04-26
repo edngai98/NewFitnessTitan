@@ -1,5 +1,7 @@
 package com.example.newfitnesstitan;
 
+import com.example.newfitnesstitan.Entities.Joke;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 

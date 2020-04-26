@@ -1,32 +1,21 @@
 package com.example.newfitnesstitan;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.newfitnesstitan.QuizContent.QuizDescriptions;
-import com.example.newfitnesstitan.UserResults.Users;
+import com.example.newfitnesstitan.Entities.QuizDescriptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.protobuf.compiler.PluginProtos;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class QuizAdapter extends FirestoreRecyclerAdapter<QuizDescriptions, QuizAdapter.QuizHolder> {

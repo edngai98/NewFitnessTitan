@@ -1,4 +1,4 @@
-package com.example.newfitnesstitan.QuizContent;
+package com.example.newfitnesstitan.Entities;
 
 public class QuizQuestions {
 
