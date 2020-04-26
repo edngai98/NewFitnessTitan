@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -237,6 +238,7 @@ public class DashboardFragment extends Fragment {
                 return quote;
             } catch (IOException e) {
                 e.printStackTrace();
+                Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
                 return null;
             }
         }
