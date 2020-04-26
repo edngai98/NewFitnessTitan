@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -66,8 +67,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!Name.getText().toString().equals("") && !Password.getText().toString().equals("")) {
                     validate(Name.getText().toString(), Password.getText().toString());
+
                 } else {
                     Toast.makeText(LoginActivity.this, "Fill in the empty fields", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
