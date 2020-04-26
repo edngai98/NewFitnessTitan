@@ -36,11 +36,13 @@
         android:id="@+id/leaderName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="88dp"
         android:layout_marginTop="252dp"
+        android:layout_marginEnd="65dp"
         android:fontFamily="@font/roboto_bold"
         android:textColor="#050505"
         android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
