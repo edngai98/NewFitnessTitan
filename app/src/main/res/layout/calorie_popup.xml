@@ -11,8 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:text="Server error, did you enter an ingredient?"
+        android:text="Sorry, we couldn't find that ingredient, please try again"
         android:textSize="20sp"
+        android:gravity="center"
         android:textStyle="bold" />
 
     <Button

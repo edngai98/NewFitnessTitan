@@ -98,6 +98,11 @@ public class CalorieDetailFragment extends Fragment {
                                         dialog.hide();
                                     }
                                 });
+                                caloriesText.setText("N/A");
+                                fatsText.setText("N/A");
+                                fiberText.setText("N/A");
+                                carbsText.setText("N/A");
+                                sugarText.setText("N/A");
 
 
                                // Toast.makeText(, "The server returned an error, please try again", Toast.LENGTH_SHORT).show();
