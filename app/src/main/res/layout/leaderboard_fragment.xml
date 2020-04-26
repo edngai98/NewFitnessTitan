@@ -75,7 +75,7 @@
         android:layout_marginTop="42dp"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/textView21"
-        app:srcCompat="@drawable/user1" />
+        app:srcCompat="@mipmap/first_place_round" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -85,7 +85,7 @@
         android:layout_marginTop="42dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21"
-        app:srcCompat="@drawable/user2" />
+        app:srcCompat="@mipmap/second_place_round" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -97,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/textView21"
-        app:srcCompat="@drawable/user3" />
+        app:srcCompat="@mipmap/third_place_round" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="412dp"
